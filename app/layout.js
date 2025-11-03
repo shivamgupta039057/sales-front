@@ -23,12 +23,14 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
-         <Sidebar />
-   <div className="w-full">
+        <Sidebar />
+        <div className="ml-[60px] min-h-screen flex flex-col">
           <Header />
+          <main className="flex-1">
+            {children}
+          </main>
+          <Footer />
         </div>
-        {children}
-        <Footer />
       </body>
     </html>
   );
