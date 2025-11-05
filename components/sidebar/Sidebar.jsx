@@ -33,8 +33,8 @@ const sidebarMenuItems = [
     href: null,
     submenu: [
       { id: 'leads', label: 'Leads', href: '/leads' },
-      { id: 'add-single-lead', label: 'Add Single Lead', href: '/leads/add-single' },
-      { id: 'add-from-excel', label: 'Add From Excel', href: '/leads/add-excel' },
+      { id: 'add-single-lead', label: 'Add Single Lead', href: null },
+      { id: 'add-from-excel', label: 'Add From Excel', href: null },
       { id: 'add-from-integration', label: 'Add from integration', href: '/leads/add-integration' }
     ]
   },
@@ -224,8 +224,14 @@ const Sidebar = () => {
                               type="button"
                               onClick={() => {
                                 setOpenMenuId(null);
+                                console.log('Sidebar: Clicked on', sub.id); // Debug log
                                 if (typeof window !== 'undefined') {
-                                  window.dispatchEvent(new CustomEvent('openLeadModal', { detail: { type: sub.id } }));
+                                  const event = new CustomEvent('openLeadModal', { 
+                                    detail: { type: sub.id },
+                                    bubbles: true 
+                                  });
+                                  console.log('Sidebar: Dispatching event with type:', sub.id); // Debug log
+                                  window.dispatchEvent(event);
                                 }
                               }}
                               className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-gray-800 hover:bg-gray-50"
