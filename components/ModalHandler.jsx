@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import AddSingleLeadModal from '@/app/leads/components/AddSingleLeadModal';
+import AddSingleLeadModal from '@/app/leads/components/AddSingleLead';
 import BulkUploadModal from '@/app/leads/components/BulkUploadModal';
 
 const ModalHandler = () => {

@@ -69,7 +69,7 @@ const DataTable = ({ columns = [], rows = [], pageSize = 10, className = '', onR
               <th className="px-3 py-3 text-left text-xs md:text-[14px] font-bold text-[#464F60] uppercase tracking-wider">
                 <input
                   type="checkbox"
-                  className="w-4 h-4 accent-[#9333EA] focus:outline-none"
+                  className="w-4 h-4 accent-[#4880FF] focus:outline-none"
                   checked={allVisibleSelected}
                   onChange={toggleAllVisible}
                 />
@@ -103,7 +103,7 @@ const DataTable = ({ columns = [], rows = [], pageSize = 10, className = '', onR
                 <td className="px-3 py-3">
                   <input
                     type="checkbox"
-                    className="w-4 h-4 accent-[#9333EA] focus:outline-none"
+                    className="w-4 h-4 accent-[#4880FF] focus:outline-none"
                     checked={selected.has(row.id)}
                     onChange={() => toggleRow(row.id)}
                   />

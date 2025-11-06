@@ -130,9 +130,9 @@ const BulkUploadModal = ({ open, onClose }) => {
               onClick={() => fileInputRef.current?.click()}
               className={`border-2 border-dashed rounded-[10px] p-8 text-center cursor-pointer transition-colors ${
                 isDragging
-                  ? 'border-[#9333EA] bg-[#9333EA]/5'
+                  ? 'border-[#4880FF] bg-[#4880FF]/5'
                   : file
-                  ? 'border-[#9333EA] bg-[#9333EA]/5'
+                  ? 'border-[#4880FF] bg-[#4880FF]/5'
                   : 'border-gray-300 hover:border-gray-400 bg-gray-50'
               }`}
             >
@@ -146,7 +146,7 @@ const BulkUploadModal = ({ open, onClose }) => {
               <div className="flex flex-col items-center gap-3">
                 <div className="w-12 h-12 flex items-center justify-center rounded-[10px] bg-gray-100">
                   {file ? (
-                    <UploadIcon className="w-6 h-6 text-[#9333EA]" />
+                    <UploadIcon className="w-6 h-6 text-[#4880FF]" />
                   ) : (
                     <Folder className="w-6 h-6 text-gray-400" />
                   )}
@@ -177,7 +177,7 @@ const BulkUploadModal = ({ open, onClose }) => {
           </button>
           <button
             onClick={handleUpload}
-            className="px-6 py-2 text-sm font-medium text-white bg-[#9333EA] rounded-[10px] hover:bg-[#7e22ce] transition-colors"
+            className="px-6 py-2 text-sm font-medium text-white bg-[#4880FF] rounded-[10px]  transition-colors"
           >
             Upload
           </button>

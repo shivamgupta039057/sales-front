@@ -136,8 +136,6 @@ const LeadAddModal = ({ open, onClose, onSave }) => {
                   value={form.email}
                   onChange={handleChange('email')}
                 />
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <Input
                     label="NEET Rank"
                     placeholder="Enter NEET rank"
@@ -150,7 +148,6 @@ const LeadAddModal = ({ open, onClose, onSave }) => {
                     value={form.neetScore}
                     onChange={handleChange('neetScore')}
                   />
-                </div>
 
                 <Select
                   label="State"

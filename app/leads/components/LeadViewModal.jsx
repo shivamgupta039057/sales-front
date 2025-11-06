@@ -252,8 +252,8 @@ const LeadViewModal = ({ open, onClose, lead }) => {
               ))}
               </div>
               <div className="mt-auto flex items-center gap-2 border-t border-white/60 pt-3">
-                <input className="flex-1 border border-[#D5D5D5] rounded-[10px] px-3 h-10 text-[13px] text-[#202224] placeholder:text-[#6C727F] bg-[#f5f9ff] focus:outline-none" placeholder="Type a message" />
-                <button className="h-10 w-10 inline-flex items-center justify-center rounded-[10px] bg-[#3B82F6] text-white hover:bg-[#2563EB]"><Send className="w-4 h-4"/></button>
+                <input className="flex-1 border border-[#D5D5D5] rounded-[10px] px-3 h-10 sm:h-11 text-sm text-[#202224] placeholder:text-[#6C727F] bg-white focus:outline-none" placeholder="Type a message" />
+                <button className="h-10 sm:h-11 w-10 sm:w-11 inline-flex items-center justify-center rounded-[10px] bg-[#3B82F6] text-white hover:bg-[#2563EB]"><Send className="w-4 h-4"/></button>
               </div>
             </div>
           </div>
