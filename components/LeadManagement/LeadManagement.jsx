@@ -83,11 +83,11 @@ const LeadManagement = () => {
           return (
             <div
               key={index}
-              className="bg-white rounded-lg shadow-sm border border-gray-100 p-4 sm:p-6 relative overflow-hidden hover:shadow-md transition-shadow"
+              className="bg-white rounded-[10px] shadow-sm border border-gray-100 p-4 sm:p-6 relative overflow-hidden hover:shadow-md transition-shadow"
             >
               {/* Icon */}
               <div className="absolute top-4 right-4 sm:top-6 sm:right-6">
-                <div className={`${metric.iconBg} ${metric.iconShape === 'circle' ? 'rounded-full' : 'rounded-lg'} p-2 sm:p-3`}>
+                <div className={`${metric.iconBg} ${metric.iconShape === 'circle' ? 'rounded-full' : 'rounded-[10px]'} p-2 sm:p-3`}>
                   <IconComponent className={`${metric.iconColor} w-5 h-5 sm:w-6 sm:h-6`} />
                 </div>
               </div>
@@ -116,7 +116,7 @@ const LeadManagement = () => {
       </div>
 
       {/* Filters Section */}
-      <div className="flex flex-wrap justify-between items-start gap-3 md:gap-4 mb-4 md:mb-6 p-3 md:p-4 bg-gray-50 rounded-lg relative">
+      <div className="flex flex-wrap justify-between items-start gap-3 md:gap-4 mb-4 md:mb-6 p-3 md:p-4 bg-gray-50 rounded-[10px] relative">
         <div className="flex flex-wrap items-center gap-2 md:gap-3">
           <div className="relative" ref={filterRef}>
             <button
@@ -129,7 +129,7 @@ const LeadManagement = () => {
 
             {/* Filter Dropdown Panel */}
             {isFilterOpen && (
-              <div className="fixed lg:absolute top-16 lg:top-full left-4 lg:left-0 right-4 lg:right-auto lg:mt-2 bg-white rounded-lg shadow-xl max-w-xl w-auto lg:w-full p-4 md:p-6 z-50 border border-gray-200 max-h-[calc(100vh-8rem)] overflow-y-auto">
+              <div className="fixed lg:absolute top-16 lg:top-full left-4 lg:left-0 right-4 lg:right-auto lg:mt-2 bg-white rounded-[10px] shadow-xl max-w-xl w-auto lg:w-full p-4 md:p-6 z-50 border border-gray-200 max-h-[calc(100vh-8rem)] overflow-y-auto">
                 {/* Title */}
                 <h2 className="text-lg md:text-xl font-bold text-gray-900 mb-4 md:mb-6">Other filters</h2>
 
@@ -141,7 +141,7 @@ const LeadManagement = () => {
                       Assigned Sales Person
                     </label>
                     <div className="relative">
-                      <select className="w-full appearance-none border border-gray-300 rounded-lg px-3 py-2 text-sm pr-8 focus:outline-none focus:ring-2 focus:ring-purple-500 bg-white">
+                      <select className="w-full appearance-none border border-gray-300 rounded-[10px] px-3 py-2 text-sm pr-8 focus:outline-none focus:ring-2 focus:ring-purple-500 bg-white">
                         <option>All Staff</option>
                         <option>Staff 1</option>
                         <option>Staff 2</option>
@@ -160,7 +160,7 @@ const LeadManagement = () => {
                       Assigned Sales Person
                     </label>
                     <div className="relative">
-                      <select className="w-full appearance-none border border-gray-300 rounded-lg px-3 py-2 text-sm pr-8 focus:outline-none focus:ring-2 focus:ring-purple-500 bg-white">
+                      <select className="w-full appearance-none border border-gray-300 rounded-[10px] px-3 py-2 text-sm pr-8 focus:outline-none focus:ring-2 focus:ring-purple-500 bg-white">
                         <option>All Staff</option>
                         <option>Staff 1</option>
                         <option>Staff 2</option>
@@ -182,12 +182,12 @@ const LeadManagement = () => {
                       <input
                         type="text"
                         placeholder="Min"
-                        className="flex-1 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500"
+                        className="flex-1 border border-gray-300 rounded-[10px] px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500"
                       />
                       <input
                         type="text"
                         placeholder="Max"
-                        className="flex-1 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500"
+                        className="flex-1 border border-gray-300 rounded-[10px] px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500"
                       />
                     </div>
                   </div>
@@ -200,7 +200,7 @@ const LeadManagement = () => {
                     <input
                       type="text"
                       placeholder="Search by ID"
-                      className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500"
+                      className="w-full border border-gray-300 rounded-[10px] px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500"
                     />
                   </div>
 
@@ -212,7 +212,7 @@ const LeadManagement = () => {
                     <input
                       type="text"
                       placeholder="Search by number"
-                      className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500"
+                      className="w-full border border-gray-300 rounded-[10px] px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500"
                     />
                   </div>
 
@@ -234,7 +234,7 @@ const LeadManagement = () => {
                   <button
                     type="button"
                     onClick={() => setIsFilterOpen(false)}
-                    className="px-6 py-2 text-sm font-medium text-gray-700 bg-gray-200 rounded-lg hover:bg-gray-300 transition-colors"
+                    className="px-6 py-2 text-sm font-medium text-gray-700 bg-gray-200 rounded-[10px] hover:bg-gray-300 transition-colors"
                   >
                     Cancel
                   </button>
@@ -244,7 +244,7 @@ const LeadManagement = () => {
                       // Handle apply filter logic here
                       setIsFilterOpen(false);
                     }}
-                    className="px-6 py-2 text-sm font-medium text-white bg-[#9333EA] rounded-lg hover:bg-[#7e22ce] transition-colors"
+                    className="px-6 py-2 text-sm font-medium text-white bg-[#9333EA] rounded-[10px] hover:bg-[#7e22ce] transition-colors"
                   >
                     Apply Now
                   </button>
@@ -255,15 +255,15 @@ const LeadManagement = () => {
           <input
             type="text"
             placeholder="Mobile Number"
-            className="border border-gray-300 rounded-lg px-2 md:px-3 py-1.5 md:py-2 text-xs md:text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 w-32 sm:w-40"
+            className="border border-gray-300 rounded-[10px] px-2 md:px-3 py-1.5 md:py-2 text-xs md:text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 w-32 sm:w-40"
           />
           <input
             type="text"
             placeholder="Student Name"
-            className="border border-gray-300 rounded-lg px-2 md:px-3 py-1.5 md:py-2 text-xs md:text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 w-32 sm:w-40"
+            className="border border-gray-300 rounded-[10px] px-2 md:px-3 py-1.5 md:py-2 text-xs md:text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 w-32 sm:w-40"
           />
           <div className="relative">
-            <select className="appearance-none border border-gray-300 rounded-lg px-3 py-2 text-sm pr-8 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+            <select className="appearance-none border border-gray-300 rounded-[10px] px-3 py-2 text-sm pr-8 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
               <option>Lead Status</option>
               <option>New</option>
               <option>Contacted</option>
@@ -278,17 +278,17 @@ const LeadManagement = () => {
           </div>
           <button
             type="button"
-            className="flex items-center gap-1 md:gap-2 text-red-600 hover:text-red-800 transition-colors px-2 md:px-3 py-1.5 md:py-2 rounded-lg hover:bg-red-50 text-xs md:text-sm"
+            className="flex items-center gap-1 md:gap-2 text-red-600 hover:text-red-800 transition-colors px-2 md:px-3 py-1.5 md:py-2 rounded-[10px] hover:bg-red-50 text-xs md:text-sm"
           >
             <RotateCcw className="w-3 h-3 md:w-4 md:h-4" />
             <span className="font-medium">Reset</span>
           </button>
         </div>
         <div className="flex items-center gap-2">
-          <button type="button" className="p-1.5 md:p-2 rounded-lg border border-gray-300 hover:bg-white transition-colors">
+          <button type="button" className="p-1.5 md:p-2 rounded-[10px] border border-gray-300 hover:bg-white transition-colors">
             <Download className="w-4 h-4 md:w-5 md:h-5 text-gray-600" />
           </button>
-          <button type="button" className="p-1.5 md:p-2 rounded-lg border border-gray-300 hover:bg-white transition-colors">
+          <button type="button" className="p-1.5 md:p-2 rounded-[10px] border border-gray-300 hover:bg-white transition-colors">
             <Upload className="w-4 h-4 md:w-5 md:h-5 text-gray-600" />
           </button>
         </div>
@@ -304,7 +304,7 @@ const LeadManagement = () => {
             </div>
             <div className="bg-gray-50 rounded-b-lg p-2 md:p-3 space-y-2 md:space-y-3 min-h-[300px] md:min-h-[400px]">
               {[1, 2, 3].map((item) => (
-                <div key={item} className="bg-white rounded-lg shadow-sm p-3 md:p-4 border border-gray-200">
+                <div key={item} className="bg-white rounded-[10px] shadow-sm p-3 md:p-4 border border-gray-200">
                   <h3 className="font-bold text-sm md:text-base text-gray-900 mb-2 md:mb-3">Rohit Verma</h3>
                   <div className="space-y-1.5 md:space-y-2 text-xs md:text-sm text-gray-600">
                     <div className="flex items-center gap-1.5 md:gap-2">
@@ -345,7 +345,7 @@ const LeadManagement = () => {
             </div>
             <div className="bg-gray-50 rounded-b-lg p-2 md:p-3 space-y-2 md:space-y-3 min-h-[300px] md:min-h-[400px]">
               {[1, 2].map((item) => (
-                <div key={item} className="bg-white rounded-lg shadow-sm p-3 md:p-4 border border-gray-200">
+                <div key={item} className="bg-white rounded-[10px] shadow-sm p-3 md:p-4 border border-gray-200">
                   <h3 className="font-bold text-sm md:text-base text-gray-900 mb-2 md:mb-3">Rohit Verma</h3>
                   <div className="space-y-1.5 md:space-y-2 text-xs md:text-sm text-gray-600">
                     <div className="flex items-center gap-1.5 md:gap-2">
@@ -386,7 +386,7 @@ const LeadManagement = () => {
             </div>
             <div className="bg-gray-50 rounded-b-lg p-2 md:p-3 space-y-2 md:space-y-3 min-h-[300px] md:min-h-[400px]">
               {[1, 2].map((item) => (
-                <div key={item} className="bg-white rounded-lg shadow-sm p-3 md:p-4 border border-gray-200">
+                <div key={item} className="bg-white rounded-[10px] shadow-sm p-3 md:p-4 border border-gray-200">
                   <h3 className="font-bold text-sm md:text-base text-gray-900 mb-2 md:mb-3">Rohit Verma</h3>
                   <div className="space-y-1.5 md:space-y-2 text-xs md:text-sm text-gray-600">
                     <div className="flex items-center gap-1.5 md:gap-2">

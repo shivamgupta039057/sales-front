@@ -26,7 +26,7 @@ const Header = () => {
     <header className="bg-white shadow p-3 md:p-4 flex justify-between items-center sticky top-0 z-10">
       {/* Mobile Menu Button */}
       <button
-        className="lg:hidden p-2 rounded-lg hover:bg-gray-50 transition-colors"
+        className="lg:hidden p-2 rounded-[10px] hover:bg-gray-50 transition-colors"
         type="button"
       >
         <Menu className="w-6 h-6 text-gray-600" />
@@ -37,7 +37,7 @@ const Header = () => {
         <button
           type="button"
           onClick={() => setIsProfileOpen((prev) => !prev)}
-          className="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-gray-50 transition-colors"
+          className="flex items-center gap-2 px-3 py-2 rounded-[10px] hover:bg-gray-50 transition-colors"
         >
           <div className="shrink-0">
             <div className="size-8 rounded-full bg-purple-100 flex items-center justify-center">
@@ -52,7 +52,7 @@ const Header = () => {
         </button>
 
         {isProfileOpen && (
-          <div className="absolute right-0 mt-2 w-56 bg-white rounded-lg shadow-xl border border-gray-200 py-2 z-50">
+          <div className="absolute right-0 mt-2 w-56 bg-white rounded-[10px] shadow-xl border border-gray-200 py-2 z-50">
             <div className="px-4 py-3 border-b border-gray-200">
               <p className="text-sm font-medium text-gray-900">Akshita</p>
               <p className="text-xs text-gray-500">akshita@example.com</p>

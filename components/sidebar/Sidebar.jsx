@@ -44,12 +44,12 @@ const sidebarMenuItems = [
     icon: FileText,
     href: '/reports'
   },
-  // {
-  //   id: 'lead-management',
-  //   label: 'Lead Management',
-  //   icon: Users,
-  //   href: '/dashboard/leads'
-  // },
+  {
+    id: 'lead-management',
+    label: 'Lead Management',
+    icon: Users,
+    href: '/dashboard/leads'
+  },
   {
     id: 'student-management',
     label: 'Student Management',
@@ -189,7 +189,7 @@ const Sidebar = () => {
                   </button>
 
                   {isOpen && (
-                    <div className="absolute left-full ml-2 top-0 w-64 rounded-xl bg-white shadow-md [box-shadow:0px_8px_24px_rgba(0,0,0,0.12)] border border-gray-100 p-2 z-[100000]">
+                    <div className="absolute left-full ml-2 top-0 w-64 rounded-[10px] bg-white shadow-md [box-shadow:0px_8px_24px_rgba(0,0,0,0.12)] border border-gray-100 p-2 z-[100000]">
                       <div className="flex flex-col">
                         {item.submenu.map((sub) => {
                           if (sub.type === 'divider') {
@@ -208,7 +208,7 @@ const Sidebar = () => {
                                 key={sub.id}
                                 href={sub.href || '/leads'}
                                 onClick={() => setOpenMenuId(null)}
-                                className={`flex items-center gap-3 rounded-lg px-3 py-2 text-sm hover:bg-gray-50 ${
+                                className={`flex items-center gap-3 rounded-[10px] px-3 py-2 text-sm hover:bg-gray-50 ${
                                   subActive 
                                     ? 'bg-[#9333EA]/10 text-[#9333EA]' 
                                     : 'text-gray-800'
@@ -234,7 +234,7 @@ const Sidebar = () => {
                                   window.dispatchEvent(event);
                                 }
                               }}
-                              className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-gray-800 hover:bg-gray-50"
+                              className="flex items-center gap-3 rounded-[10px] px-3 py-2 text-sm text-gray-800 hover:bg-gray-50"
                             >
                               <span className="truncate">{sub.label}</span>
                             </button>

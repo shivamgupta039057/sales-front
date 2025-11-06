@@ -7,7 +7,7 @@ import CounsellorAssignModal from './CounsellorAssignModal';
 const Backdrop = ({ onClose }) => (
   <div
     onClick={onClose}
-    className="fixed inset-0 bg-black/40 backdrop-blur-[1px] z-40"
+    className="fixed inset-0 bg-white/0.5 backdrop-blur-[9px] z-40"
     aria-hidden="true"
   />
 );
@@ -23,6 +23,24 @@ const LeadViewModal = ({ open, onClose, lead }) => {
   const [activeAction, setActiveAction] = useState(null);
   const [noteText, setNoteText] = useState('');
   const [assignOpen, setAssignOpen] = useState(false);
+  useEffect(() => {
+    // Prevent body scroll when offcanvas is open
+    if (open) {
+      document.body.style.overflow = 'hidden';
+      document.body.style.position = 'fixed';
+      document.body.style.width = '100%';
+    } else {
+      document.body.style.overflow = '';
+      document.body.style.position = '';
+      document.body.style.width = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+      document.body.style.position = '';
+      document.body.style.width = '';
+    };
+  }, [open]);
+
   useEffect(() => {
     if (!open) return;
     const onEsc = (e) => e.key === 'Escape' && onClose?.();
@@ -40,103 +58,108 @@ const LeadViewModal = ({ open, onClose, lead }) => {
     return () => document.removeEventListener('mousedown', onDown);
   }, []);
 
-  if (!open) return null;
-
   return (
     <>
-      <Backdrop onClose={onClose} />
-      <div className="fixed inset-0 z-50 flex flex-col p-4">
-        <div className="w-full max-w-5xl mx-auto h-full flex flex-col rounded-2xl bg-white shadow-xl border border-gray-200 overflow-hidden">
+      {open && <Backdrop onClose={onClose} />}
+      <div className={`fixed inset-0 z-50 flex justify-end transition-opacity duration-300 ${open ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}>
+        <div className={`w-full max-w-4xl h-full flex flex-col bg-white [box-shadow:0px_13px_61px_0px_#A9A9A95D]  overflow-hidden transition-transform duration-300  ease-in-out ${open ? 'translate-x-0' : 'translate-x-full'}`}>
           {/* Header */}
           <div className="px-6 pt-4 shrink-0">
             <div className="flex items-center justify-between gap-4">
               {/* Left: Name + status + stars */}
-              <div className="flex-1 min-w-0">
-                <h3 className="text-xl font-semibold text-gray-900 truncate">{lead?.name || 'Mahendra Yadav'}</h3>
-                <div className="mt-2 flex items-center gap-3">
-                  <div className="relative" ref={statusMenuRef}>
-                    <button onClick={() => setStatusMenuOpen(!statusMenuOpen)} className="px-3 py-1 rounded-full bg-purple-700 text-white text-xs font-medium inline-flex items-center gap-1">
-                      <span>{status}</span>
-                      <ChevronDown className="w-3 h-3 opacity-90" />
-                    </button>
-                    {statusMenuOpen && (
-                      <StatusDropdown onSelect={(val) => { setStatus(val); setStatusMenuOpen(false); }} />
-                    )}
+              <div className='flex items-center gap-4'>
+
+                  <div className="flex-1 min-w-0">
+                    <h3 className="text-[24px] font-bold text-gray-900 truncate">{lead?.name || 'Mahendra Yadav'}</h3>
+                    
                   </div>
-                  <div className="flex items-center gap-1 text-gray-300">
-                    {[1,2,3,4,5].map((i) => (
-                      <Star key={i} className="w-4 h-4" />
-                    ))}
+                    {/* Middle: action buttons */}
+                  <div className="shrink-0 flex items-center gap-2">
+                    <button className="px-3 h-9 inline-flex items-center rounded-[10px] border border-[#D6E4E0] bg-white text-sm text-[#253042] hover:bg-gray-50"><UserPlus className="w-4 h-4 mr-2"/>Register Student</button>
+                    <button className="px-3 h-9 inline-flex items-center rounded-[10px] border border-[#D6E4E0] bg-white text-sm text-[#253042] hover:bg-gray-50"><LinkIcon className="w-4 h-4 mr-2"/>Payment Link</button>
                   </div>
-                </div>
+
               </div>
 
-              {/* Middle: action buttons */}
-              <div className="shrink-0 flex items-center gap-2">
-                <button className="px-3 h-9 inline-flex items-center rounded-lg border border-gray-200 bg-white text-sm text-gray-700 hover:bg-gray-50"><UserPlus className="w-4 h-4 mr-2"/>Register Student</button>
-                <button className="px-3 h-9 inline-flex items-center rounded-lg border border-gray-200 bg-white text-sm text-gray-700 hover:bg-gray-50"><LinkIcon className="w-4 h-4 mr-2"/>Payment Link</button>
-              </div>
+             
 
               {/* Right: icon buttons */}
               <div className="shrink-0 flex items-center gap-2">
-                <button className="h-9 w-9 inline-flex items-center justify-center rounded-lg border border-gray-200 bg-white hover:bg-gray-50"><UserPlus className="w-5 h-5 text-gray-600"/></button>
-                <button className="h-9 w-9 inline-flex items-center justify-center rounded-lg border border-gray-200 bg-white hover:bg-gray-50"><AtSign className="w-5 h-5 text-gray-600"/></button>
+                <button className="h-9 cursor-pointer inline-flex items-center justify-center rounded-[10px]"><UserPlus className="w-5 h-5 text-gray-600"/></button>
+                <button className="h-9 cursor-pointer inline-flex items-center justify-center rounded-[10px]"><AtSign className="w-5 h-5 text-gray-600"/></button>
                 <div className="relative" ref={menuRef}>
-                  <button onClick={() => setMenuOpen(!menuOpen)} className="h-9 w-9 inline-flex items-center justify-center rounded-lg border border-gray-200 bg-white hover:bg-gray-50">
+                  <button onClick={() => setMenuOpen(!menuOpen)} className="h-9 cursor-pointer inline-flex items-center justify-center rounded-[10px]">
                     <MoreVertical className="w-5 h-5 text-gray-600"/>
                   </button>
                   {menuOpen && (
-                    <div className="absolute right-0 mt-2 w-56 rounded-xl border border-gray-200 bg-white shadow-xl z-10 overflow-hidden">
+                    <div className="absolute right-0 mt-2 w-56 rounded-[10px] border border-gray-200 bg-white shadow-xl z-10 overflow-hidden">
                       <button onClick={()=>{ setAssignOpen(true); setMenuOpen(false); }} className="w-full text-left px-4 py-2 text-sm hover:bg-gray-50">Counsellor Assignment</button>
                       <button className="w-full text-left px-4 py-2 text-sm hover:bg-gray-50">Edit/Add other info</button>
                       <button className="w-full text-left px-4 py-2 text-sm hover:bg-gray-50">Document Checker</button>
                     </div>
                   )}
                 </div>
-                <button onClick={onClose} className="h-9 w-9 inline-flex items-center justify-center rounded-lg border border-gray-200 bg-white hover:bg-gray-50"><X className="w-5 h-5 text-gray-600"/></button>
+                <button onClick={onClose} className="h-9 inline-flex items-center justify-center rounded-[10px] cursor-pointer"><X className="w-6 h-6 text-gray-600"/></button>
               </div>
             </div>
+            <div className="mt-2 flex items-center gap-3">
+                      <div className="relative" ref={statusMenuRef}>
+                        <button onClick={() => setStatusMenuOpen(!statusMenuOpen)} className="px-3 py-1 rounded-full bg-[#E1FCEF] text-[#14804A] text-sm font-medium inline-flex items-center gap-1">
+                          <span>{status}</span>
+                          {/* <ChevronDown className="w-3 h-3 opacity-90" /> */}
+                        </button>
+                        {statusMenuOpen && (
+                          <StatusDropdown onSelect={(val) => { setStatus(val); setStatusMenuOpen(false); }} />
+                        )}
+                      </div>
+                      <div className="flex items-center gap-1 text-[#B8B8B8]">
+                        {[1,2,3,4,5].map((i) => (
+                          <Star key={i} className="w-4 h-4 text-[#B8B8B8] fill-[#B8B8B8]" />
+                        ))}
+                      </div>
+            </div>
+            <hr className="my-2 border-gray-200" /> 
           </div>
 
           {/* Scrollable Content */}
-          <div className="flex-1 overflow-y-auto">
+          <div className="flex-1 overflow-y-auto [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
           {/* Info grid */}
           <div className="px-6 pt-4 grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="space-y-4">
-              <InfoRow icon={<Phone className='w-4 h-4'/>} label="WhatsApp Number" value={lead?.phone || '+91-xxxxx254'} />
-              <InfoRow icon={<Mail className='w-4 h-4'/>} label="Email" value={lead?.email || 'xxxx@gmail.com'} />
-              <InfoRow icon={<IdCard className='w-4 h-4'/>} label="Student Category" value={lead?.category || '---'} />
-              <InfoRow icon={<MapPin className='w-4 h-4'/>} label="City" value={lead?.city || 'Jaipur'} />
-              <InfoRow icon={<Calendar className='w-4 h-4'/>} label="Interested Date" value={lead?.interestedDate || 'DD/MM/YYYY'} />
+            <div className="space-y-7">
+              <InfoRow icon={<Phone className='size-5 '/>} label="WhatsApp Number" value={lead?.phone || '+91-xxxxx254'} />
+              <InfoRow icon={<Mail className='size-5 '/>} label="Email" value={lead?.email || 'xxxx@gmail.com'} />
+              <InfoRow icon={<IdCard className='size-5 '/>} label="Student Category" value={lead?.category || '---'} />
+              <InfoRow icon={<MapPin className='size-5 '/>} label="City" value={lead?.city || 'Jaipur'} />
+              <InfoRow icon={<Calendar className='size-5 '/>} label="Interested Date" value={lead?.interestedDate || 'DD/MM/YYYY'} />
             </div>
-            <div className="space-y-4">
-              <InfoRow icon={<IdCard className='w-4 h-4'/>} label="ID" value={lead?.id || '--'} />
-              <InfoRow icon={<FileText className='w-4 h-4'/>} label="Interested Course" value={lead?.course || 'MBBS'} />
-              <InfoRow icon={<Star className='w-4 h-4'/>} label="Expected Score" value={lead?.expected || '----'} />
-              <InfoRow icon={<MapPin className='w-4 h-4'/>} label="State" value={lead?.state || 'MBBS'} />
-              <InfoRow icon={<Calendar className='w-4 h-4'/>} label="Created On" value={lead?.createdOn || 'DD/MM/YYYY'} />
+            <div className="space-y-7">
+              <InfoRow icon={<IdCard className='size-5 '/>} label="ID" value={lead?.id || '--'} />
+              <InfoRow icon={<FileText className='size-5 '/>} label="Interested Course" value={lead?.course || 'MBBS'} />
+              <InfoRow icon={<Star className='size-5 '/>} label="Expected Score" value={lead?.expected || '----'} />
+              <InfoRow icon={<MapPin className='size-5 '/>} label="State" value={lead?.state || 'MBBS'} />
+              <InfoRow icon={<Calendar className='size-5 '/>} label="Created On" value={lead?.createdOn || 'DD/MM/YYYY'} />
             </div>
           </div>
 
           {/* Action chips */}
-          <div className="px-6 py-3">
-            <div className="flex flex-wrap items-center gap-2 bg-gray-50 border border-gray-200 rounded-xl p-2">
+          <div className="px-6 py-3 mt-5">
+            <div className="flex flex-wrap items-center gap-2 bg-[#EBEFFB] rounded-[10px] p-2">
               {['Call','Report','Add Notes'].map((t) => (
                 <button
                   key={t}
                   onClick={() => setActiveAction(t)}
-                  className={`px-3 py-1.5 text-sm rounded-lg border ${activeAction===t ? 'bg-white border-blue-300 text-blue-600 ring-1 ring-blue-200' : 'bg-white border-gray-200 text-gray-700 hover:bg-gray-50'}`}
+                  className={`px-3 py-1.5 text-sm rounded-full border ${activeAction===t ? 'bg-white border-[#4880FF] text-[#4880FF] ring-1 ring-blue-200' : 'bg-white border-[#D6E4E0] text-[#253042] rounded-full'}`}
                 >
                   {t}
                 </button>
               ))}
-              <button className="px-3 py-1.5 text-sm rounded-lg bg-white border border-gray-200 hover:bg-gray-50 inline-flex items-center gap-1">Message <ChevronDown className="w-4 h-4"/></button>
-              <button className="px-3 py-1.5 text-sm rounded-lg bg-white border border-gray-200 hover:bg-gray-50">Call Later</button>
-              <button className="px-3 py-1.5 text-sm rounded-lg bg-white border border-gray-200 hover:bg-gray-50">View Docs</button>
-              <button className="px-3 py-1.5 text-sm rounded-lg bg-white border border-gray-200 hover:bg-gray-50">Send Files</button>
+              <button className="px-3 py-1.5 text-sm rounded-full bg-white border border-[#D6E4E0] text-[#253042] inline-flex items-center gap-1">Message <ChevronDown className="w-4 h-4"/></button>
+              <button className="px-3 py-1.5 text-sm rounded-full bg-white border border-[#D6E4E0] text-[#253042]">Call Later</button>
+              <button className="px-3 py-1.5 text-sm rounded-full bg-white border border-[#D6E4E0] text-[#253042]">View Docs</button>
+              <button className="px-3 py-1.5 text-sm rounded-full bg-white border border-[#D6E4E0] text-[#253042]">Send Files</button>
             </div>
             {activeAction === 'Add Notes' && (
-              <div className="mt-2 border border-gray-200 rounded-xl overflow-hidden">
+              <div className="mt-2 border border-gray-200 rounded-[10px] overflow-hidden">
                 <textarea
                   value={noteText}
                   onChange={(e)=>setNoteText(e.target.value)}
@@ -153,25 +176,39 @@ const LeadViewModal = ({ open, onClose, lead }) => {
 
           {/* Secondary filters */}
           <div className="px-6 pb-3">
-            <div className="flex flex-wrap items-center gap-2">
-              {['All Actions','Time','Team'].map((t) => (
-                <button key={t} className="px-3 py-2 text-sm rounded-lg border border-gray-200 bg-white inline-flex items-center gap-2">{t}<ChevronDown className="w-4 h-4 text-gray-500"/></button>
-              ))}
-              <button className="h-9 w-9 inline-flex items-center justify-center rounded-lg border border-gray-200 bg-white"><RefreshCcw className="w-4 h-4 text-gray-600"/></button>
+            <div className="flex items-center gap-4">
+              {/* Left container with filters and refresh */}
+              <div className="flex items-center border border-gray-200 rounded-[10px] bg-white">
+                {['All Actions','Time','Team'].map((t, index) => (
+                  <React.Fragment key={t}>
+                    {index > 0 && <div className="w-px h-6 bg-gray-200" />}
+                    <button className="px-3 py-2 text-sm text-gray-900 bg-transparent inline-flex items-center gap-2 hover:bg-gray-50 first:rounded-l-[10px] last:rounded-r-[10px]">
+                      {t}
+                      <ChevronDown className="w-4 h-4 text-gray-500"/>
+                    </button>
+                  </React.Fragment>
+                ))}
+                <div className="w-px h-6 bg-gray-200" />
+                <button className="px-3 py-2 h-9 inline-flex items-center justify-center hover:bg-gray-50 rounded-r-[10px]">
+                  <RefreshCcw className="w-4 h-4 text-red-500"/>
+                </button>
+              </div>
+              
+              {/* Right Action button */}
               <div className="ml-auto relative" ref={actionMenuRef}>
                 <button
                   onClick={() => setActionMenuOpen(!actionMenuOpen)}
-                  className="px-3 h-9 inline-flex items-center gap-2 rounded-lg border border-gray-200 bg-white text-sm hover:bg-gray-50"
+                  className="px-3 h-9 inline-flex items-center gap-2 rounded-[10px] border border-[#4880FF] bg-white text-[#4880FF] text-sm"
                 >
                   + Action
-                  <ChevronDown className="w-4 h-4 text-gray-600"/>
+                  <ChevronDown className="w-4 h-4"/>
                 </button>
                 {actionMenuOpen && (
-                  <div className="absolute right-0 mt-2 w-56 rounded-xl border border-gray-200 bg-white shadow-xl z-10 overflow-hidden">
-                    <button className="w-full text-left px-4 py-2 text-sm hover:bg-gray-50">Notes</button>
-                    <button className="w-full text-left px-4 py-2 text-sm hover:bg-gray-50">Edit/Add other info</button>
-                    <button className="w-full text-left px-4 py-2 text-sm hover:bg-gray-50">Register Student</button>
-                    <button className="w-full text-left px-4 py-2 text-sm hover:bg-gray-50">Send Credentials</button>
+                  <div className="absolute right-0 mt-2 w-56 rounded-[10px] p-2 bg-white [box-shadow:0px_13px_61px_0px_#A9A9A95D] z-10 overflow-hidden">
+                    <button className="w-full text-left px-4 py-2 text-sm">Notes</button>
+                    <button className="w-full text-left px-4 py-2 text-sm">Edit/Add other info</button>
+                    <button className="w-full text-left px-4 py-2 text-sm">Register Student</button>
+                    <button className="w-full text-left px-4 py-2 text-sm">Send Credentials</button>
                   </div>
                 )}
               </div>
@@ -180,21 +217,36 @@ const LeadViewModal = ({ open, onClose, lead }) => {
 
           {/* History */}
           <div className="px-6 pt-3 pb-4">
-            <h4 className="text-sm font-semibold text-gray-900 mb-2">History</h4>
-            <div className="rounded-xl border border-gray-200 bg-gradient-to-br from-white to-purple-50 p-3 space-y-2">
+            <h4 className="text-lg font-semibold text-gray-900 mb-2">History</h4>
+            <div className="relative overflow-hidden rounded-[10px] border border-[#D5D5D5] bg-gradient-to-br from-[#FFE5F5] via-[#F3E8FF] to-white p-3 flex flex-col z-20 h-[361px]">
+                <div className='absolute inset-0 size-full -z-10'><img src="/chatbg.png" alt="history" className="size-full object-cover" /></div>
+              
+              <div className='flex-1 overflow-y-auto space-y-2 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden'>
               {[
-                'SEARCH FOR THE CUET COUNSELOR',
-                'Sir cuet ke liya counselor bata do',
-                'Lorem Ipsum is simply dummy text of the printing and typesetting industry.'
+                { text: 'SEARCH FOR THE CUET COUNSELOR', time: '2:42 PM Sun, 6 Jul 25' },
+                { text: 'Sir cuet ke liya counsler bata do', time: '2:42 PM Sun, 6 Jul 25', hasIcons: true },
+                { text: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.', time: '2:42 PM Sun, 6 Jul 25' }
               ].map((m, i) => (
-                <div key={i} className="flex items-start gap-2">
-                  <div className="w-6 h-6 rounded-full bg-blue-100 text-blue-700 text-xs flex items-center justify-center">SL</div>
-                  <div className="max-w-[85%] bg-white rounded-lg border border-gray-200 px-3 py-2 text-xs text-gray-700 shadow-sm">{m}</div>
+                <div key={i} className="flex items-start gap-2 z-30">
+                  <div className="w-10 h-10 rounded-full bg-[#EEF2FF] text-[#4F46E5] text-xs font-semibold flex items-center justify-center shrink-0">SL</div>
+                  <div className="max-w-[85%] bg-white rounded-[10px] px-3 py-2 shadow-sm">
+                    <div className="text-xs font-bold text-gray-900 flex items-center gap-1 flex-wrap">
+                      {m.hasIcons ? (
+                        <>
+                          <span>ke liya counsler bata do</span>
+                        </>
+                      ) : (
+                        m.text
+                      )}
+                    </div>
+                    <div className="text-[10px] text-gray-500 mt-1">({m.time})</div>
+                  </div>
                 </div>
               ))}
-              <div className="mt-3 flex items-center gap-2 border-t border-white/60 pt-3">
-                <input className="flex-1 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Type a message" />
-                <button className="h-10 w-10 inline-flex items-center justify-center rounded-lg bg-[#3B82F6] text-white hover:bg-[#2563EB]"><Send className="w-4 h-4"/></button>
+              </div>
+              <div className="mt-auto flex items-center gap-2 border-t border-white/60 pt-3">
+                <input className="flex-1 border border-[#D5D5D5] rounded-[10px] px-3 h-10 text-[13px] text-[#202224] placeholder:text-[#6C727F] bg-[#f5f9ff] focus:outline-none" placeholder="Type a message" />
+                <button className="h-10 w-10 inline-flex items-center justify-center rounded-[10px] bg-[#3B82F6] text-white hover:bg-[#2563EB]"><Send className="w-4 h-4"/></button>
               </div>
             </div>
           </div>
@@ -208,12 +260,13 @@ const LeadViewModal = ({ open, onClose, lead }) => {
 
 const InfoRow = ({ icon, label, value }) => (
   <div className="flex items-start gap-3">
-    <div className="h-7 w-7 rounded-lg border border-gray-200 bg-white inline-flex items-center justify-center text-gray-700">
+    <div className="h-12 w-12 sm:w-10 sm:h-10 rounded-[10px] border border-gray-200 bg-white inline-flex items-center justify-center text-gray-700">
       {icon}
     </div>
     <div>
-      <div className="text-[11px] text-gray-500">{label}</div>
-      <div className="text-sm text-gray-900">{value}</div>
+      <div className="text-[14px] 
+       text-[#898989">{label}</div>
+      <div className="text-[15px] text-[#000000] font-semibold">{value}</div>
     </div>
   </div>
 );
@@ -247,15 +300,15 @@ const StatusDropdown = ({ onSelect }) => {
     },
   ];
   return (
-    <div className="absolute z-20 mt-2 w-56 rounded-xl border border-gray-200 bg-white shadow-xl">
+    <div className="absolute z-40 mt-2 w-56 rounded-[6px] border border-gray-200 bg-white [box-shadow:_0px_13px_61px_0px_#A9A9A95D">
       {sections.map((sec, si) => (
         <div key={sec.title} className="py-2">
-          <div className="px-4 pb-1 text-[11px] uppercase tracking-wide text-gray-400">{sec.title}</div>
+          <div className="px-4 pb-1 text-sm uppercase tracking-wide text-[#ABABAB]">{sec.title}</div>
           {sec.items.map((it) => (
             <button
               key={it.label}
               onClick={() => onSelect(it.label)}
-              className="w-full px-4 py-2 text-left text-sm hover:bg-gray-50 flex items-center gap-2"
+              className="w-full px-4 py-2 text-left text-sm text-[#202224] hover:bg-gray-50 flex items-center gap-2"
             >
               <span className={`inline-block h-2.5 w-2.5 rounded ${it.color}`}></span>
               {it.label}

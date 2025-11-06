@@ -4,13 +4,13 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { X, Search } from 'lucide-react';
 
 const RoleChip = ({ label }) => (
-  <span className="px-2 py-1 rounded-lg text-xs bg-gray-100 text-gray-700">{label}</span>
+  <span className="px-2 py-1 rounded-[10px] text-xs bg-gray-100 text-gray-700">{label}</span>
 );
 
 const StaffRow = ({ staff, checked, onToggle, onChangePercent }) => (
   <div className="flex items-center justify-between py-3">
     <div className="flex items-center gap-3">
-      <input type="checkbox" className="w-4 h-4 accent-[#3B82F6]" checked={checked} onChange={onToggle} />
+      <input type="checkbox" className="w-4 h-4 accent-[#3B82F6] focus:outline-none" checked={checked} onChange={onToggle} />
       <div className="h-9 w-9 rounded-full bg-indigo-100 text-indigo-700 text-sm font-semibold inline-flex items-center justify-center">
         {staff.initials}
       </div>
@@ -51,7 +51,7 @@ const ReassignLeadsModal = ({ open, onClose, totalLeads = 2000, staff = [], onAs
         {/* Header */}
         <div className="flex items-start justify-between px-6 py-4 border-b border-gray-200">
           <h3 className="text-xl font-semibold text-gray-900">Reassign leads</h3>
-          <button onClick={onClose} className="h-9 w-9 inline-flex items-center justify-center rounded-lg border border-gray-200 bg-white hover:bg-gray-50">
+          <button onClick={onClose} className="h-9 w-9 inline-flex items-center justify-center rounded-[10px] border border-gray-200 bg-white hover:bg-gray-50">
             <X className="w-5 h-5 text-gray-600" />
           </button>
         </div>
@@ -72,7 +72,7 @@ const ReassignLeadsModal = ({ open, onClose, totalLeads = 2000, staff = [], onAs
               value={query}
               onChange={(e)=>setQuery(e.target.value)}
               placeholder="Search"
-              className="w-full rounded-lg border border-gray-300 pl-9 pr-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full rounded-[10px] border border-[#D5D5D5] pl-9 pr-3 h-10 text-[13px] text-[#202224] placeholder:text-[#6C727F] bg-[#f5f9ff] focus:outline-none"
             />
           </div>
 
@@ -99,8 +99,8 @@ const ReassignLeadsModal = ({ open, onClose, totalLeads = 2000, staff = [], onAs
 
         {/* Footer */}
         <div className="px-6 py-3 border-t border-gray-200 bg-gray-50 flex items-center justify-end gap-3">
-          <button onClick={onClose} className="px-4 py-2 rounded-lg border border-gray-300 text-sm text-gray-700 hover:bg-white">Cancel</button>
-          <button onClick={()=> onAssign?.(selected)} className="px-4 py-2 rounded-lg bg-[#3B82F6] text-white text-sm hover:bg-[#2563EB]">Assign Leads</button>
+          <button onClick={onClose} className="px-4 py-2 rounded-[10px] border border-gray-300 text-sm text-gray-700 hover:bg-white">Cancel</button>
+          <button onClick={()=> onAssign?.(selected)} className="px-4 py-2 rounded-[10px] bg-[#3B82F6] text-white text-sm hover:bg-[#2563EB]">Assign Leads</button>
         </div>
       </div>
     </div>

@@ -6,14 +6,14 @@ import AddLeadStageModal from './AddLeadStageModal';
 import DeleteStatusModal from './DeleteStatusModal';
 
 const StageCard = ({ color = 'bg-gray-100', title, children }) => (
-  <div className="rounded-xl border border-gray-200 bg-white overflow-hidden">
+  <div className="rounded-[10px] border border-gray-200 bg-white overflow-hidden">
     <div className={`px-4 py-3 text-center text-sm font-semibold ${color} bg-opacity-30`}>{title}</div>
     {children}
   </div>
 );
 
 const ItemRow = ({ label, tint = 'bg-gray-200', tintColor, onDelete }) => (
-  <div className={`flex items-center justify-between rounded-lg px-3 py-2 ${tintColor ? '' : tint}`} style={tintColor ? { backgroundColor: tintColor } : undefined}>
+  <div className={`flex items-center justify-between rounded-[10px] px-3 py-2 ${tintColor ? '' : tint}`} style={tintColor ? { backgroundColor: tintColor } : undefined}>
     <div className="flex items-center gap-2 text-sm">
       <GripVertical className="w-4 h-4 text-gray-500" />
       <span>{label}</span>
@@ -53,21 +53,31 @@ const LeadStages = () => {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
         {/* Initial Stage */}
         <div className="space-y-3">
-          <StageCard color="bg-gray-100" title="Initial stage">
-            <div className="p-3">
-              <div className="rounded-lg border border-gray-200 bg-purple-100 text-purple-900 px-3 py-3 flex items-center justify-between">
-                <span>Just Curious</span>
-                <Pencil className="w-4 h-4" />
-              </div>
+          <div className="rounded-[10px] border-[2px] border-[#E8E8E8] bg-white p-4 space-y-3">
+            {/* Top field - Initial stage */}
+            <div className="relative rounded-[10px] bg-white border-[2px] border-[#E8E8E8] p-3 text-center">
+              
+              <div className="text-sm font-semibold text-gray-900">Initial stage</div>
             </div>
-          </StageCard>
+            {/* Bottom field - Just Curious */}
+            <div className="rounded-[10px] bg-[#7D236E33] px-4 py-3 flex items-center justify-between">
+              <span className="text-sm font-medium text-gray-900">Just Curious</span>
+              <button className="p-1 hover:bg-purple-200 rounded transition-colors">
+                <Pencil className="w-4 h-4 text-gray-700" />
+              </button>
+            </div>
+          </div>
         </div>
 
         {/* Active Stage */}
         <div className="space-y-3">
-          <StageCard color="bg-green-100" title="Active stage">
-            <div className="p-3">
-              <button onClick={()=>setAddOpen(true)} className="w-full mb-3 inline-flex items-center justify-center gap-2 rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm hover:bg-gray-50">
+          <div className="rounded-[10px] border-[2px] border-[#D9F1D9] bg-white overflow-hidden">
+            <div className="p-4 space-y-3">
+            <div className="relative rounded-[10px] bg-[#D9F1D9] border-[2px] border-[#D9F1D9] p-3 text-center">
+              
+              <div className="text-sm font-semibold text-gray-900">Active stage</div>
+            </div>
+              <button onClick={()=>setAddOpen(true)} className="w-full mb-3 inline-flex items-center justify-center gap-2 rounded-[10px] border border-gray-300 bg-white px-3 py-2 text-sm hover:bg-gray-50">
                 <Plus className="w-4 h-4" />
                 Add Stage
               </button>
@@ -82,31 +92,43 @@ const LeadStages = () => {
                 ))}
               </div>
             </div>
-          </StageCard>
+          </div>
         </div>
 
         {/* Closed Stage */}
         <div className="space-y-3">
-          <StageCard color="bg-green-100" title="Closed stage">
-            <div className="p-3 space-y-3">
-              <StageCard color="bg-green-50" title="Won">
+          <div className="rounded-[10px] border-[2px] border-[#D9F1D9] bg-white overflow-hidden">
+            <div className="p-4 space-y-3">
+              <div className="relative rounded-[10px] bg-[#D9F1D9] border-[2px] border-[#D9F1D9] p-3 text-center">
+                <div className="text-sm font-semibold text-gray-900">Closed stage</div>
+              </div>
+              
+              {/* Won Section */}
+              <div className="rounded-[10px] border border-gray-200 bg-white overflow-hidden">
+                <div className="px-4 py-3 text-center text-sm font-semibold bg-green-50 bg-opacity-30">Won</div>
                 <div className="p-3">
-                  <div className="rounded-lg border border-gray-200 bg-teal-100 text-gray-800 px-3 py-3 flex items-center justify-between">
+                  <div className="rounded-[10px] border border-gray-200 bg-teal-100 text-gray-800 px-3 py-3 flex items-center justify-between">
                     <span>Deal Closed</span>
-                    <Pencil className="w-4 h-4" />
+                    <button className="p-1 hover:bg-teal-200 rounded transition-colors">
+                      <Pencil className="w-4 h-4 text-gray-700" />
+                    </button>
                   </div>
                 </div>
-              </StageCard>
+              </div>
 
-              <StageCard color="bg-red-50" title={<span className="text-red-600 font-semibold">Lost</span>}>
+              {/* Lost Section */}
+              <div className="rounded-[10px] border-[2px] border-red-300 bg-white overflow-hidden">
+                <div className="px-4 py-3 text-center text-sm font-semibold text-red-600">Lost</div>
                 <div className="p-3 space-y-3">
-                  <div className="rounded-lg border border-gray-200 bg-red-100 text-gray-800 px-3 py-3 flex items-center justify-between">
+                  <div className="rounded-[10px] border border-gray-200 bg-red-100 text-gray-800 px-3 py-3 flex items-center justify-between">
                     <span>Lost</span>
-                    <Pencil className="w-4 h-4" />
+                    <button className="p-1 hover:bg-red-200 rounded transition-colors">
+                      <Pencil className="w-4 h-4 text-gray-700" />
+                    </button>
                   </div>
                   <div className="flex items-center justify-between text-sm text-gray-600">
                     <span>Reason for Lost leads</span>
-                    <button className="text-blue-600">+Add</button>
+                    <button className="text-blue-600 hover:text-blue-700">+Add</button>
                   </div>
                   <div className="space-y-2">
                     <ItemRow label="Score doesn't match" tint="bg-white" />
@@ -116,9 +138,9 @@ const LeadStages = () => {
                     <ItemRow label="Reason" tint="bg-white" />
                   </div>
                 </div>
-              </StageCard>
+              </div>
             </div>
-          </StageCard>
+          </div>
         </div>
       </div>
       <AddLeadStageModal open={addOpen} onClose={()=>setAddOpen(false)} onSave={handleAddStage} />

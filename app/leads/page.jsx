@@ -14,10 +14,10 @@ const page = () => {
   const [isLeadAddOpen, setIsLeadAddOpen] = useState(false);
   const [reassignOpen, setReassignOpen] = useState(false);
   return (
-    <div className="p-4">
+    <div className="p-5">
               <FiltersBar onCreate={() => setIsLeadAddOpen(true)} />
               <TableTopBar todayCount={5} overdueCount={5} onBulkActionChange={(val)=>{ if (val==='reassign') setReassignOpen(true); }} />
-                <DataTable
+                {/* <DataTable
                   columns={[
                     { key: 'name', header: 'Name', sortable: true },
                     { key: 'status', header: 'Status', sortable: true },
@@ -39,9 +39,10 @@ const page = () => {
                   ]}
                   pageSize={10}
                   onRowClick={(row) => setSelectedLead(row)}
-                /> 
-                <LeadViewModal open={!!selectedLead} onClose={() => setSelectedLead(null)} lead={selectedLead} />
-                <LeadAddModal open={isLeadAddOpen} onClose={() => setIsLeadAddOpen(false)} onSave={(data)=>{ /* TODO: persist */ }} />
+                />  */}
+               
+                {/* <LeadViewModal open={!!selectedLead} onClose={() => setSelectedLead(null)} lead={selectedLead} />  */}
+                {/* <LeadAddModal open={isLeadAddOpen} onClose={() => setIsLeadAddOpen(false)} onSave={(data)=>{  }} /> */}
                 <ReassignLeadsModal
                   open={reassignOpen}
                   onClose={()=>setReassignOpen(false)}

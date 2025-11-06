@@ -20,7 +20,7 @@ import {
 
 const FieldItem = ({ field, icon: Icon, onEdit, onToggleVisibility, isVisible = true }) => {
   return (
-    <div className="flex items-center gap-3 p-3 bg-white rounded-lg border border-gray-200 hover:border-gray-300 transition-colors group">
+    <div className="flex items-center gap-3 p-3 bg-white rounded-[10px] border border-gray-200 hover:border-gray-300 transition-colors group">
       <div className="flex-shrink-0 cursor-move">
         <GripVertical className="w-4 h-4 text-gray-400" />
       </div>
@@ -90,12 +90,12 @@ const CreateFieldModal = ({ open, onClose, onSave }) => {
   return (
     <div className="fixed inset-0 z-[10001] flex items-center justify-center p-4">
       <div className="absolute inset-0 bg-black/40" onClick={onClose} />
-      <div className="relative w-full max-w-md bg-white rounded-xl shadow-2xl border border-gray-200 z-10">
+      <div className="relative w-full max-w-md bg-white rounded-[10px] shadow-2xl border border-gray-200 z-10">
         <div className="flex items-center justify-between p-6 border-b border-gray-200">
           <h3 className="text-xl font-semibold text-gray-900">Create Field</h3>
           <button
             onClick={onClose}
-            className="p-2 rounded-lg hover:bg-gray-100 transition-colors"
+            className="p-2 rounded-[10px] hover:bg-gray-100 transition-colors"
           >
             <X className="w-5 h-5 text-gray-600" />
           </button>
@@ -109,7 +109,7 @@ const CreateFieldModal = ({ open, onClose, onSave }) => {
               value={fieldData.name}
               onChange={(e) => setFieldData({ ...fieldData, name: e.target.value })}
               placeholder="Enter field name"
-              className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#9333EA] focus:border-[#9333EA]"
+              className="w-full border border-[#D5D5D5] rounded-[10px] px-3 h-10 text-[13px] text-[#202224] placeholder:text-[#6C727F] bg-[#f5f9ff] focus:outline-none"
             />
           </div>
 
@@ -122,8 +122,8 @@ const CreateFieldModal = ({ open, onClose, onSave }) => {
                   setFieldData({ ...fieldData, type: e.target.value });
                   setError('');
                 }}
-                className={`w-full appearance-none border rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#9333EA] focus:border-[#9333EA] bg-white ${
-                  error ? 'border-red-300' : 'border-gray-300'
+                className={`w-full appearance-none border rounded-[10px] px-3 h-10 text-[13px] text-[#202224] focus:outline-none bg-[#f5f9ff] ${
+                  error ? 'border-red-300' : 'border-[#D5D5D5]'
                 }`}
               >
                 <option value="">Select Type</option>
@@ -149,7 +149,7 @@ const CreateFieldModal = ({ open, onClose, onSave }) => {
               onChange={(e) => setFieldData({ ...fieldData, description: e.target.value })}
               placeholder="Enter field description"
               rows={3}
-              className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#9333EA] focus:border-[#9333EA] resize-none"
+              className="w-full border border-[#D5D5D5] rounded-[10px] px-3 h-10 text-[13px] text-[#202224] placeholder:text-[#6C727F] bg-[#f5f9ff] focus:outline-none resize-none"
             />
           </div>
 
@@ -165,13 +165,13 @@ const CreateFieldModal = ({ open, onClose, onSave }) => {
         <div className="flex items-center justify-end gap-3 p-6 border-t border-gray-200">
           <button
             onClick={onClose}
-            className="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+            className="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-[10px] hover:bg-gray-50 transition-colors"
           >
             Cancel
           </button>
           <button
             onClick={handleSubmit}
-            className="px-4 py-2 text-sm font-medium text-white bg-[#9333EA] rounded-lg hover:bg-[#7e22ce] transition-colors"
+            className="px-4 py-2 text-sm font-medium text-white bg-[#9333EA] rounded-[10px] hover:bg-[#7e22ce] transition-colors"
           >
             Create Field
           </button>
@@ -288,7 +288,7 @@ const AddSingleLeadModal = ({ open, onClose }) => {
     <>
       <div className="fixed inset-0 z-[10000] flex items-center justify-center p-4">
         <div className="absolute inset-0 bg-black/40" onClick={onClose} />
-        <div className="relative w-full max-w-5xl max-h-[90vh] bg-white rounded-xl shadow-2xl border border-gray-200 z-10 flex flex-col">
+        <div className="relative w-full max-w-5xl max-h-[90vh] bg-white rounded-[10px] shadow-2xl border border-gray-200 z-10 flex flex-col">
           {/* Header */}
           <div className="flex items-center justify-between p-6 border-b border-gray-200 shrink-0">
             <div className="flex items-center gap-3">
@@ -299,7 +299,7 @@ const AddSingleLeadModal = ({ open, onClose }) => {
             </div>
             <button
               onClick={onClose}
-              className="p-2 rounded-lg hover:bg-gray-100 transition-colors"
+              className="p-2 rounded-[10px] hover:bg-gray-100 transition-colors"
             >
               <X className="w-5 h-5 text-gray-600" />
             </button>
@@ -314,7 +314,7 @@ const AddSingleLeadModal = ({ open, onClose }) => {
             </div>
 
             {/* Current Lead Identifier */}
-            <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg border border-gray-200">
+            <div className="flex items-center justify-between p-4 bg-gray-50 rounded-[10px] border border-gray-200">
               <div className="flex items-center gap-3">
                 <Phone className="w-5 h-5 text-gray-600" />
                 <div>
@@ -322,7 +322,7 @@ const AddSingleLeadModal = ({ open, onClose }) => {
                   <div className="text-xs text-gray-500">+91 9999999999</div>
                 </div>
               </div>
-              <button className="px-3 py-1.5 text-sm font-medium text-[#9333EA] hover:bg-[#9333EA]/10 rounded-lg transition-colors">
+              <button className="px-3 py-1.5 text-sm font-medium text-[#9333EA] hover:bg-[#9333EA]/10 rounded-[10px] transition-colors">
                 Change
               </button>
             </div>
@@ -336,7 +336,7 @@ const AddSingleLeadModal = ({ open, onClose }) => {
                 {primaryFields.map((field) => {
                   const Icon = field.icon;
                   return (
-                    <div key={field.id} className="flex items-center gap-3 p-3 bg-white rounded-lg border border-gray-200 hover:border-gray-300 transition-colors">
+                    <div key={field.id} className="flex items-center gap-3 p-3 bg-white rounded-[10px] border border-gray-200 hover:border-gray-300 transition-colors">
                       <div className="flex-shrink-0 w-8 h-8 flex items-center justify-center rounded bg-gray-50 border border-gray-200">
                         <Icon className="w-4 h-4 text-gray-600" />
                       </div>
@@ -349,7 +349,7 @@ const AddSingleLeadModal = ({ open, onClose }) => {
                           value={field.value}
                           onChange={(e) => handleFieldValueChange(field.id, e.target.value, true)}
                           placeholder={field.placeholder}
-                          className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-[#9333EA] focus:border-[#9333EA] bg-white"
+                          className="w-full border border-[#D5D5D5] rounded-[10px] px-3 h-10 text-[13px] text-[#202224] placeholder:text-[#6C727F] bg-[#f5f9ff] focus:outline-none"
                         />
                       </div>
                       <div className="flex items-center gap-2">
@@ -379,7 +379,7 @@ const AddSingleLeadModal = ({ open, onClose }) => {
                 <h3 className="text-base font-semibold text-gray-900">OTHER FIELDS</h3>
                 <button
                   onClick={() => setShowCreateField(true)}
-                  className="px-4 py-2 text-sm font-medium text-white bg-[#9333EA] rounded-lg hover:bg-[#7e22ce] transition-colors flex items-center gap-2"
+                  className="px-4 py-2 text-sm font-medium text-white bg-[#9333EA] rounded-[10px] hover:bg-[#7e22ce] transition-colors flex items-center gap-2"
                 >
                   <Plus className="w-4 h-4" />
                   Add a new field
@@ -395,19 +395,19 @@ const AddSingleLeadModal = ({ open, onClose }) => {
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     placeholder="Search..."
-                    className="w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#9333EA] focus:border-[#9333EA]"
+                    className="w-full pl-10 pr-3 h-10 border border-[#D5D5D5] rounded-[10px] text-[13px] text-[#202224] placeholder:text-[#6C727F] bg-[#f5f9ff] focus:outline-none"
                   />
                 </div>
                 <div className="relative" ref={typeDropdownRef}>
                   <button
                     onClick={() => setShowTypeDropdown(!showTypeDropdown)}
-                    className="px-4 py-2 border border-gray-300 rounded-lg text-sm text-gray-700 bg-white hover:bg-gray-50 flex items-center gap-2"
+                    className="px-4 py-2 border border-gray-300 rounded-[10px] text-sm text-gray-700 bg-white hover:bg-gray-50 flex items-center gap-2"
                   >
                     <span>Select type</span>
                     <ChevronDown className={`w-4 h-4 transition-transform ${showTypeDropdown ? 'rotate-180' : ''}`} />
                   </button>
                   {showTypeDropdown && (
-                    <div className="absolute top-full mt-1 right-0 w-48 bg-white border border-gray-200 rounded-lg shadow-lg z-10 py-1">
+                    <div className="absolute top-full mt-1 right-0 w-48 bg-white border border-gray-200 rounded-[10px] shadow-lg z-10 py-1">
                       {['All', 'Checkbox', 'Date', 'Dependent Dropdown', 'Dropdown', 'Email', 'Money', 'Number'].map((type) => (
                         <button
                           key={type}
@@ -430,7 +430,7 @@ const AddSingleLeadModal = ({ open, onClose }) => {
                 </div>
                 <button
                   onClick={() => setActiveFieldsOnly(!activeFieldsOnly)}
-                  className="px-4 py-2 border border-gray-300 rounded-lg text-sm text-gray-700 bg-white hover:bg-gray-50 flex items-center gap-2"
+                  className="px-4 py-2 border border-gray-300 rounded-[10px] text-sm text-gray-700 bg-white hover:bg-gray-50 flex items-center gap-2"
                 >
                   <Eye className="w-4 h-4" />
                   Active Fields
@@ -446,7 +446,7 @@ const AddSingleLeadModal = ({ open, onClose }) => {
                 {filteredOtherFields.map((field) => {
                   const Icon = field.icon;
                   return (
-                    <div key={field.id} className="flex items-center gap-3 p-3 bg-white rounded-lg border border-gray-200 hover:border-gray-300 transition-colors">
+                    <div key={field.id} className="flex items-center gap-3 p-3 bg-white rounded-[10px] border border-gray-200 hover:border-gray-300 transition-colors">
                       <div className="flex-shrink-0 cursor-move">
                         <GripVertical className="w-4 h-4 text-gray-400" />
                       </div>
@@ -462,7 +462,7 @@ const AddSingleLeadModal = ({ open, onClose }) => {
                             <select
                               value={field.value}
                               onChange={(e) => handleFieldValueChange(field.id, e.target.value)}
-                              className="w-full appearance-none border border-gray-300 rounded-md px-3 py-2 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#9333EA] focus:border-[#9333EA] bg-white"
+                              className="w-full appearance-none border border-[#D5D5D5] rounded-[10px] px-3 h-10 text-[13px] text-[#202224] focus:outline-none bg-[#f5f9ff]"
                             >
                               <option value="">Select {field.name}</option>
                               <option value="value1">value1</option>
@@ -476,7 +476,7 @@ const AddSingleLeadModal = ({ open, onClose }) => {
                             value={field.value}
                             onChange={(e) => handleFieldValueChange(field.id, e.target.value)}
                             placeholder={field.placeholder}
-                            className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-[#9333EA] focus:border-[#9333EA] bg-white"
+                            className="w-full border border-[#D5D5D5] rounded-[10px] px-3 h-10 text-[13px] text-[#202224] placeholder:text-[#6C727F] bg-[#f5f9ff] focus:outline-none"
                           />
                         )}
                       </div>
@@ -510,13 +510,13 @@ const AddSingleLeadModal = ({ open, onClose }) => {
           <div className="flex items-center justify-end gap-3 p-6 border-t border-gray-200 shrink-0">
             <button
               onClick={onClose}
-              className="px-6 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+              className="px-6 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-[10px] hover:bg-gray-50 transition-colors"
             >
               Cancel
             </button>
             <button
               onClick={handleSaveLead}
-              className="px-6 py-2 text-sm font-medium text-white bg-[#9333EA] rounded-lg hover:bg-[#7e22ce] transition-colors"
+              className="px-6 py-2 text-sm font-medium text-white bg-[#9333EA] rounded-[10px] hover:bg-[#7e22ce] transition-colors"
             >
               Save Lead
             </button>

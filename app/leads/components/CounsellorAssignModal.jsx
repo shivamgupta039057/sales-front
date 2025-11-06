@@ -10,7 +10,7 @@ const Select = ({ label, options = [], value, onChange }) => (
       <select
         value={value}
         onChange={(e)=>onChange(e.target.value)}
-        className="w-full appearance-none rounded-lg border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
+        className="w-full appearance-none rounded-[10px] border border-[#D5D5D5] px-3 h-10 text-[13px] text-[#202224] focus:outline-none bg-[#f5f9ff]"
       >
         {options.map((o) => (
           <option key={o.value ?? o} value={o.value ?? o}>{o.label ?? o}</option>
@@ -40,7 +40,7 @@ const CounsellorAssignModal = ({ open, onClose, onAssign, onRegister, lead }) =>
       <div className="relative w-full max-w-2xl mx-auto h-full flex flex-col rounded-2xl bg-white shadow-xl border border-gray-200 z-10 overflow-hidden">
         <div className="flex items-start justify-between px-6 py-4 border-b border-gray-200 shrink-0">
           <h3 className="text-xl font-semibold text-gray-900">Counsellor Assign</h3>
-          <button onClick={onClose} className="h-9 w-9 inline-flex items-center justify-center rounded-lg border border-gray-200 bg-white hover:bg-gray-50">
+          <button onClick={onClose} className="h-9 w-9 inline-flex items-center justify-center rounded-[10px] border border-gray-200 bg-white hover:bg-gray-50">
             <X className="w-5 h-5 text-gray-600" />
           </button>
         </div>
@@ -59,8 +59,8 @@ const CounsellorAssignModal = ({ open, onClose, onAssign, onRegister, lead }) =>
         </div>
 
         <div className="px-6 py-4 border-t border-gray-200 flex items-center justify-end gap-3 bg-gray-50 shrink-0">
-          <button onClick={()=>onRegister?.(lead)} className="px-4 py-2 rounded-lg border border-gray-300 text-sm text-gray-700 hover:bg-white">Register Now</button>
-          <button onClick={()=>onAssign?.({ documentChecker, counsellor, lead })} className="px-4 py-2 rounded-lg bg-[#3B82F6] text-white text-sm hover:bg-[#2563EB]">Assign</button>
+          <button onClick={()=>onRegister?.(lead)} className="px-4 py-2 rounded-[10px] border border-gray-300 text-sm text-gray-700 hover:bg-white">Register Now</button>
+          <button onClick={()=>onAssign?.({ documentChecker, counsellor, lead })} className="px-4 py-2 rounded-[10px] bg-[#3B82F6] text-white text-sm hover:bg-[#2563EB]">Assign</button>
         </div>
       </div>
     </div>
