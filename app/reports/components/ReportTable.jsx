@@ -20,7 +20,7 @@ const StatusBadge = ({ status }) => {
 
 const ReportTable = () => {
   return (
-    <div className="w-full overflow-x-auto border border-gray-200 rounded-xl">
+    <div className="w-full overflow-x-auto border border-gray-200 rounded-[10px]">
       <table className="min-w-full divide-y divide-gray-200">
         <thead className="bg-gray-50">
           <tr>

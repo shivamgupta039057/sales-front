@@ -54,10 +54,10 @@ const MetricsGrid = () => {
         return (
           <div
             key={index}
-            className="bg-white rounded-lg shadow-sm border border-gray-100 p-4 sm:p-6 relative overflow-hidden hover:shadow-md transition-shadow"
+            className="bg-white rounded-[10px] shadow-sm border border-gray-100 p-4 sm:p-6 relative overflow-hidden hover:shadow-md transition-shadow"
           >
             <div className="absolute top-4 right-4 sm:top-6 sm:right-6">
-              <div className={`${metric.iconBg} ${metric.iconShape === 'circle' ? 'rounded-full' : 'rounded-lg'} p-2 sm:p-3`}>
+              <div className={`${metric.iconBg} ${metric.iconShape === 'circle' ? 'rounded-full' : 'rounded-[10px]'} p-2 sm:p-3`}>
                 <IconComponent className={`${metric.iconColor} w-5 h-5 sm:w-6 sm:h-6`} />
               </div>
             </div>

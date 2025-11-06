@@ -12,7 +12,7 @@ const Input = ({ label, required, ...props }) => (
     )}
     <input
       {...props}
-      className={`w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 ${props.className || ''}`}
+      className={`w-full rounded-[10px] border border-[#D5D5D5] px-3 h-10 text-[13px] text-[#202224] placeholder:text-[#6C727F] bg-[#f5f9ff] focus:outline-none ${props.className || ''}`}
     />
   </div>
 );
@@ -23,7 +23,7 @@ const Select = ({ label, options = [], ...props }) => (
     <div className="relative">
       <select
         {...props}
-        className={`w-full appearance-none rounded-lg border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white ${props.className || ''}`}
+        className={`w-full appearance-none rounded-[10px] border border-[#D5D5D5] px-3 h-10 text-[13px] text-[#202224] focus:outline-none bg-[#f5f9ff] ${props.className || ''}`}
       >
         {options.map((o) => (
           <option key={o.value ?? o} value={o.value ?? o}>
@@ -66,7 +66,7 @@ const LeadAddModal = ({ open, onClose, onSave }) => {
       <div className="relative w-full max-w-2xl mx-auto h-full flex flex-col rounded-2xl bg-white shadow-xl border border-gray-200 z-10 overflow-hidden">
         <div className="flex items-start justify-between p-6 pb-4 shrink-0 border-b border-gray-200">
           <h3 className="text-2xl font-semibold text-gray-900">Lead Add</h3>
-          <button onClick={onClose} className="h-9 w-9 inline-flex items-center justify-center rounded-lg border border-gray-200 bg-white hover:bg-gray-50">
+          <button onClick={onClose} className="h-9 w-9 inline-flex items-center justify-center rounded-[10px] border border-gray-200 bg-white hover:bg-gray-50">
             <X className="w-5 h-5 text-gray-600" />
           </button>
         </div>
@@ -81,7 +81,7 @@ const LeadAddModal = ({ open, onClose, onSave }) => {
               value={form.mobile}
               onChange={handleChange('mobile')}
             />
-            <button className="h-10 w-10 shrink-0 inline-flex items-center justify-center rounded-lg bg-[#3B82F6] text-white hover:bg-[#2563EB]">+</button>
+            <button className="h-10 w-10 shrink-0 inline-flex items-center justify-center rounded-[10px] bg-[#3B82F6] text-white hover:bg-[#2563EB]">+</button>
           </div>
 
           <Input
@@ -145,10 +145,10 @@ const LeadAddModal = ({ open, onClose, onSave }) => {
         </div>
 
         <div className="p-6 pt-4 border-t border-gray-200 shrink-0 flex items-center justify-end gap-3">
-          <button onClick={onClose} className="px-4 py-2 rounded-lg border border-gray-300 text-sm text-gray-700 hover:bg-gray-50">Cancel</button>
+          <button onClick={onClose} className="px-4 py-2 rounded-[10px] border border-gray-300 text-sm text-gray-700 hover:bg-gray-50">Cancel</button>
           <button
             onClick={() => { onSave?.(form); onClose?.(); }}
-            className="px-4 py-2 rounded-lg bg-[#3B82F6] text-white text-sm hover:bg-[#2563EB]"
+            className="px-4 py-2 rounded-[10px] bg-[#3B82F6] text-white text-sm hover:bg-[#2563EB]"
           >
             Save Lead
           </button>

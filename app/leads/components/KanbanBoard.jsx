@@ -5,7 +5,7 @@ import { Phone, MapPin, Calendar, User, Edit, CreditCard, MoreVertical } from 'l
 
 const LeadCard = () => {
   return (
-    <div className="bg-white rounded-lg shadow-sm p-3 md:p-4 border border-gray-200">
+    <div className="bg-white rounded-[10px] shadow-sm p-3 md:p-4 border border-gray-200">
       <h3 className="font-bold text-sm md:text-base text-gray-900 mb-2 md:mb-3">Rohit Verma</h3>
       <div className="space-y-1.5 md:space-y-2 text-xs md:text-sm text-gray-600">
         <div className="flex items-center gap-1.5 md:gap-2">

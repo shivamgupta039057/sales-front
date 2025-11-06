@@ -92,13 +92,13 @@ const BulkUploadModal = ({ open, onClose }) => {
   return (
     <div className="fixed inset-0 z-[10001] flex items-center justify-center p-4">
       <div className="absolute inset-0 bg-black/40" onClick={onClose} />
-      <div className="relative w-full max-w-md bg-white rounded-xl shadow-2xl border border-gray-200 z-10">
+      <div className="relative w-full max-w-md bg-white rounded-[10px] shadow-2xl border border-gray-200 z-10">
         {/* Header */}
         <div className="flex items-center justify-between p-6 border-b border-gray-200">
           <h2 className="text-xl font-semibold text-gray-900">Bulk Upload</h2>
           <button
             onClick={onClose}
-            className="p-2 rounded-lg hover:bg-gray-100 transition-colors"
+            className="p-2 rounded-[10px] hover:bg-gray-100 transition-colors"
           >
             <X className="w-5 h-5 text-gray-600" />
           </button>
@@ -128,7 +128,7 @@ const BulkUploadModal = ({ open, onClose }) => {
               onDragLeave={handleDragLeave}
               onDrop={handleDrop}
               onClick={() => fileInputRef.current?.click()}
-              className={`border-2 border-dashed rounded-lg p-8 text-center cursor-pointer transition-colors ${
+              className={`border-2 border-dashed rounded-[10px] p-8 text-center cursor-pointer transition-colors ${
                 isDragging
                   ? 'border-[#9333EA] bg-[#9333EA]/5'
                   : file
@@ -144,7 +144,7 @@ const BulkUploadModal = ({ open, onClose }) => {
                 className="hidden"
               />
               <div className="flex flex-col items-center gap-3">
-                <div className="w-12 h-12 flex items-center justify-center rounded-lg bg-gray-100">
+                <div className="w-12 h-12 flex items-center justify-center rounded-[10px] bg-gray-100">
                   {file ? (
                     <UploadIcon className="w-6 h-6 text-[#9333EA]" />
                   ) : (
@@ -171,13 +171,13 @@ const BulkUploadModal = ({ open, onClose }) => {
         <div className="flex items-center justify-end gap-3 p-6 border-t border-gray-200">
           <button
             onClick={onClose}
-            className="px-6 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+            className="px-6 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-[10px] hover:bg-gray-50 transition-colors"
           >
             Cancel
           </button>
           <button
             onClick={handleUpload}
-            className="px-6 py-2 text-sm font-medium text-white bg-[#9333EA] rounded-lg hover:bg-[#7e22ce] transition-colors"
+            className="px-6 py-2 text-sm font-medium text-white bg-[#9333EA] rounded-[10px] hover:bg-[#7e22ce] transition-colors"
           >
             Upload
           </button>

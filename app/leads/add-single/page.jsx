@@ -14,8 +14,8 @@ import { useRouter } from 'next/navigation';
 
 const FieldInput = ({ icon: Icon, label, type = 'text', placeholder, value, onChange, required = false, options = [] }) => {
   return (
-    <div className="flex items-center gap-3 p-3 bg-white rounded-lg border border-gray-200 hover:border-gray-300 transition-colors">
-      <div className="flex-shrink-0 w-10 h-10 flex items-center justify-center rounded-lg bg-gray-50 border border-gray-200">
+    <div className="flex items-center gap-3 p-3 bg-white rounded-[10px] border border-gray-200 hover:border-gray-300 transition-colors">
+      <div className="flex-shrink-0 w-10 h-10 flex items-center justify-center rounded-[10px] bg-gray-50 border border-gray-200">
         <Icon className="w-5 h-5 text-gray-600" />
       </div>
       <div className="flex-1 min-w-0">
@@ -30,7 +30,7 @@ const FieldInput = ({ icon: Icon, label, type = 'text', placeholder, value, onCh
             <select
               value={value}
               onChange={onChange}
-              className="w-full appearance-none border border-gray-300 rounded-md px-3 py-2 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#9333EA] focus:border-[#9333EA] bg-white"
+              className="w-full appearance-none border border-[#D5D5D5] rounded-[10px] px-3 h-10 text-[13px] text-[#202224] focus:outline-none bg-[#f5f9ff]"
             >
               <option value="">Select {label}</option>
               {options.map((opt) => (
@@ -47,7 +47,7 @@ const FieldInput = ({ icon: Icon, label, type = 'text', placeholder, value, onCh
             value={value}
             onChange={onChange}
             placeholder={placeholder}
-            className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-[#9333EA] focus:border-[#9333EA] bg-white"
+            className="w-full border border-[#D5D5D5] rounded-[10px] px-3 h-10 text-[13px] text-[#202224] placeholder:text-[#6C727F] bg-[#f5f9ff] focus:outline-none"
           />
         )}
       </div>
@@ -93,7 +93,7 @@ const AddSingleLeadPage = () => {
 
       <form onSubmit={handleSubmit} className="space-y-6">
         {/* PRIMARY FIELDS (ASSIGN) */}
-        <div className="bg-white rounded-lg p-4 md:p-6 border border-gray-200">
+        <div className="bg-white rounded-[10px] p-4 md:p-6 border border-gray-200">
           <div className="flex items-center gap-2 mb-4 pb-3 border-b border-gray-200">
             <h2 className="text-base font-semibold text-gray-900">PRIMARY FIELDS (ASSIGN)</h2>
           </div>
@@ -120,7 +120,7 @@ const AddSingleLeadPage = () => {
         </div>
 
         {/* OTHER FIELDS */}
-        <div className="bg-white rounded-lg p-4 md:p-6 border border-gray-200">
+        <div className="bg-white rounded-[10px] p-4 md:p-6 border border-gray-200">
           <div className="flex items-center justify-between mb-4 pb-3 border-b border-gray-200">
             <h2 className="text-base font-semibold text-gray-900">OTHER FIELDS</h2>
             <button
@@ -196,13 +196,13 @@ const AddSingleLeadPage = () => {
           <button
             type="button"
             onClick={() => router.back()}
-            className="px-6 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+            className="px-6 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-[10px] hover:bg-gray-50 transition-colors"
           >
             Cancel
           </button>
           <button
             type="submit"
-            className="px-6 py-2 text-sm font-medium text-white bg-[#9333EA] rounded-lg hover:bg-[#7e22ce] transition-colors"
+            className="px-6 py-2 text-sm font-medium text-white bg-[#9333EA] rounded-[10px] hover:bg-[#7e22ce] transition-colors"
           >
             Save Lead
           </button>

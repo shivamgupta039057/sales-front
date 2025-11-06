@@ -11,7 +11,7 @@ const LeadsPage = () => {
         {/* Main Content */}
         <main className="flex-1 overflow-hidden">
           <section className="h-full flex-1 flex flex-col overflow-hidden p-2 sm:p-4">
-            <div className="bg-white rounded-lg shadow-sm p-3 md:p-6 overflow-y-auto scrollable-items">
+            <div className="bg-white rounded-[10px] shadow-sm p-3 md:p-6 overflow-y-auto scrollable-items">
               <LeadManagement />
             </div>
           </section>
