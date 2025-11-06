@@ -132,14 +132,15 @@ const Sidebar = () => {
       {/* Logo */}
       <div className="flex items-center justify-between">
         <Link href="/dashboard" className="flex items-center">
-          <Image
+          {/* <Image
             src="/Logo.png"
             alt="logo"
             width={120}
             height={40}
             className="transition duration-300 group-hover:invert group-hover:contrast-[7.5] group-[.active]:invert group-[.active]:contrast-[7.5] h-10 w-auto"
             priority
-          />
+          /> */}
+          logo
         </Link>
       </div>
 
