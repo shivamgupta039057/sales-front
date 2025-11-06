@@ -92,7 +92,7 @@ const LeadAddModal = ({ open, onClose, onSave }) => {
           {/* Header */}
           <div className="px-6 pt-4 shrink-0">
             <div className="flex items-center justify-between gap-4">
-              <h3 className="text-[24px] font-bold text-gray-900">Lead Add</h3>
+              <h3 className="text-lg md:text-[24px] font-bold text-gray-900">Lead Add</h3>
               <button onClick={onClose} className="h-9 inline-flex items-center justify-center rounded-[10px] cursor-pointer">
                 <X className="w-6 h-6 text-gray-600" />
               </button>

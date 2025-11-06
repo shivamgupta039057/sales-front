@@ -17,8 +17,8 @@ const FiltersBar = ({ onReset, onImport, onExport, onCreate }) => {
   }, [isOpen]);
 
   return (
-    <div className="flex items-center justify-between gap-3 md:gap-4 mb-4">
-      <div className="relative flex items-stretch bg-white border border-[#D5D5D5]/60 rounded-[10px] overflow-visible shadow-[inset_0_0_0_1px_rgba(0,0,0,0.02)]">
+    <div className="flex flex-wrap items-center justify-between gap-3 md:gap-4 mb-4">
+      <div className="relative flex items-stretch bg-white border border-[#D5D5D5]/60 rounded-[10px] overflow-visible shadow-[inset_0_0_0_1px_rgba(0,0,0,0.02)] w-full lg:w-auto">
         <button onClick={()=>setIsOpen((v)=>!v)} className="px-3 flex items-center justify-center text-[#202224] text-sm">
         <svg width="21" height="19" viewBox="0 0 21 19" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path fillRule="evenodd" clipRule="evenodd" d="M10.5 7.69286C15.8848 7.69286 20.25 6.13865 20.25 4.22143C20.25 2.30421 15.8848 0.75 10.5 0.75C5.11522 0.75 0.75 2.30421 0.75 4.22143C0.75 6.13865 5.11522 7.69286 10.5 7.69286Z" stroke="black" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
@@ -27,16 +27,16 @@ const FiltersBar = ({ onReset, onImport, onExport, onCreate }) => {
 
         </button>
         <div className="w-px bg-gray-200" />
-        <input type="text" placeholder="Mobile Number" className="px-4 h-10 rounded-[10px] text-[13px] text-[#202224] placeholder:text-[#6C727F] bg-[#f5f9ff] bg-white focus:outline-none" />
+        <input type="text" placeholder="Mobile Number" className="px-3 md:px-4 h-10 rounded-[10px] text-xs md:text-[13px] text-[#202224] placeholder:text-[#6C727F] bg-[#f5f9ff] bg-white focus:outline-none" />
         <div className="w-px bg-gray-200" />
-        <input type="text" placeholder="Student Name" className="px-4 h-10 rounded-[10px] text-[13px] text-[#202224] placeholder:text-[#6C727F] bg-[#f5f9ff] bg-white focus:outline-none" />
+        <input type="text" placeholder="Student Name" className="px-3 md:px-4 h-10 rounded-[10px] text-xs md:text-[13px] text-[#202224] placeholder:text-[#6C727F] bg-[#f5f9ff] bg-white focus:outline-none" />
         <div className="w-px bg-gray-200" />
-        <button className="px-4 py-2 text-sm text-[#202224] text-sm inline-flex items-center gap-2">
+        <button className="px-3 md:px-4 py-2 text-xs md:text-sm text-[#202224] inline-flex items-center gap-2">
           <span>Lead Status</span>
           <ChevronDown className="w-4 h-4 text-gray-500" />
         </button>
         <div className="w-px bg-gray-200" />
-        <button onClick={onReset} className="px-4 py-2 text-sm text-red-600 inline-flex items-center gap-2">
+        <button onClick={onReset} className="px-3 md:px-4 py-2 text-xs md:text-sm text-red-600 inline-flex items-center gap-2">
           <RotateCcw className="w-4 h-4" />
           <span>Reset Filter</span>
         </button>
@@ -104,7 +104,7 @@ const FiltersBar = ({ onReset, onImport, onExport, onCreate }) => {
         )}
       </div>
 
-      <div className="flex items-center gap-2 md:gap-3">
+      <div className="flex items-center gap-2 md:gap-3 mt-3 lg:mt-0">
         <button onClick={onExport} className="h-10 w-10 inline-flex items-center justify-center rounded-[10px] border border-[#D5D5D5]/60 bg-white">
           <Download className="w-5 h-5 text-[#202224] text-sm" />
         </button>
