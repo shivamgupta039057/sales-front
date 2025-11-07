@@ -58,6 +58,13 @@ const LeadViewModal = ({ open, onClose, lead }) => {
     return () => document.removeEventListener('mousedown', onDown);
   }, []);
 
+  // Close LeadViewModal when CounsellorAssignModal opens
+  useEffect(() => {
+    if (assignOpen && open) {
+      onClose?.();
+    }
+  }, [assignOpen, open, onClose]);
+
   return (
     <>
       {open && <Backdrop onClose={onClose} />}
@@ -204,7 +211,7 @@ const LeadViewModal = ({ open, onClose, lead }) => {
                   <ChevronDown className="w-4 h-4"/>
                 </button>
                 {actionMenuOpen && (
-                  <div className="absolute right-0 mt-2 w-56 rounded-[10px] p-2 bg-white [box-shadow:0px_13px_61px_0px_#A9A9A95D] z-10 overflow-hidden">
+                  <div className="absolute right-0 z-50 mt-2 w-56 rounded-[10px] p-2 bg-white [box-shadow:0px_13px_61px_0px_#A9A9A95D] z-10 overflow-hidden">
                     <button className="w-full text-left px-4 py-2 text-sm">Notes</button>
                     <button className="w-full text-left px-4 py-2 text-sm">Edit/Add other info</button>
                     <button className="w-full text-left px-4 py-2 text-sm">Register Student</button>
@@ -300,7 +307,7 @@ const StatusDropdown = ({ onSelect }) => {
     },
   ];
   return (
-    <div className="absolute z-40 mt-2 w-56 rounded-[6px] border border-gray-200 bg-white [box-shadow:_0px_13px_61px_0px_#A9A9A95D">
+    <div className="absolute z-40 mt-2 w-56 rounded-[10px] bg-white [box-shadow:_0px_13px_61px_0px_#A9A9A95D]">
       {sections.map((sec, si) => (
         <div key={sec.title} className="py-2">
           <div className="px-4 pb-1 text-sm uppercase tracking-wide text-[#ABABAB]">{sec.title}</div>
