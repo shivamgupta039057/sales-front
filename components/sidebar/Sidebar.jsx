@@ -209,7 +209,7 @@ const Sidebar = () => {
 
   return (
     <div
-      className="fixed top-0 left-0 h-screen bg-white transition-all duration-300 z-50 p-1 [box-shadow:0px_1px_4px_0px_#00000040] flex flex-col space-y-1 w-[47px] overflow-x-hidden overflow-y-visible"
+      className="bg-white transition-all duration-300 z-50 p-1 [box-shadow:0px_1px_4px_0px_#00000040] flex flex-col space-y-1 w-[47px] overflow-x-hidden overflow-y-auto shrink-0 h-screen"
     >
       {/* Logo */}
       <div className="flex items-center justify-between">

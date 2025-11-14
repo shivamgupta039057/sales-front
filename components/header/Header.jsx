@@ -238,7 +238,7 @@ const Header = () => {
   ];
 
   return (
-    <header className="bg-white shadow-sm px-3 flex justify-between items-center sticky top-0 z-40 border-b border-gray-100 h-[47px]">
+    <header className="bg-white shadow-sm px-3 flex justify-between items-center z-40 border-b border-gray-100 h-[47px] shrink-0">
       {/* Left Section - Workspace Selector */}
       <div className="flex items-center gap-3">
         <button
