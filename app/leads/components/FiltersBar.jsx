@@ -1,11 +1,13 @@
 'use client';
 
 import React, { useEffect, useRef, useState } from 'react';
-import { Funnel, ChevronDown, RotateCcw, Download, Upload } from 'lucide-react';
+import { Funnel, ChevronDown, RotateCcw, Download, Upload, UserPlus } from 'lucide-react';
+import LeadInformationOffcanvas from './LeadInformationOffcanvas';
 
 // Redesigned FiltersBar to match the required segmented control style
 const FiltersBar = ({ onReset, onImport, onExport, onCreate }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isLeadInfoOpen, setIsLeadInfoOpen] = useState(false);
   const panelRef = useRef(null);
 
   useEffect(() => {
@@ -111,10 +113,27 @@ const FiltersBar = ({ onReset, onImport, onExport, onCreate }) => {
         <button onClick={onImport} className="h-10 w-10 inline-flex items-center justify-center rounded-[10px] border border-[#D5D5D5]/60 bg-white">
           <Upload className="w-5 h-5 text-[#202224] text-sm" />
         </button>
+        <button 
+          onClick={() => setIsLeadInfoOpen(true)} 
+          className="px-4 h-10 inline-flex items-center justify-center gap-2 rounded-[10px] border border-[#4880FF] bg-white hover:bg-[#4880FF]/5 text-[#4880FF] text-sm font-medium transition-colors"
+        >
+          <UserPlus className="w-4 h-4" />
+          <span className="hidden sm:inline">Lead Info</span>
+        </button>
         <button onClick={onCreate} className="px-4 h-10 inline-flex items-center justify-center rounded-[10px] bg-[#4880FF] hover:bg-[#2563EB] text-white text-sm font-medium">
           Create New
         </button>
       </div>
+
+      {/* Lead Information Offcanvas */}
+      <LeadInformationOffcanvas
+        open={isLeadInfoOpen}
+        onClose={() => setIsLeadInfoOpen(false)}
+        onSave={(data) => {
+          console.log('Lead data saved:', data);
+          // Handle save logic here
+        }}
+      />
     </div>
   );
 };

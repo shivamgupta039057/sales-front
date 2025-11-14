@@ -25,7 +25,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <Sidebar />
-        <div className="ml-[60px] min-h-screen flex flex-col">
+        <div className="ml-[47px] min-h-screen flex flex-col">
           <Header />
           <main className="flex-1 bg-[#F5F6FA]">
             {children}
