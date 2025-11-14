@@ -275,7 +275,7 @@ const Sidebar = () => {
                   {/* Tooltip - Only show when dropdown is not open */}
                   {!isOpen && tooltipPositions[item.id] && (
                     <div 
-                      className="fixed px-2 py-1 bg-gray-900 text-white text-xs rounded-md whitespace-nowrap opacity-0 invisible group-hover/tooltip:opacity-100 group-hover/tooltip:visible transition-all duration-200 pointer-events-none z-[9999]" 
+                      className="fixed px-2 py-1 bg-[#5D5BD0] text-[#F1F1FB] text-xs rounded-md whitespace-nowrap opacity-0 invisible group-hover/tooltip:opacity-100 group-hover/tooltip:visible transition-all duration-200 pointer-events-none z-[9999]" 
                       style={{ 
                         left: `${tooltipPositions[item.id].left}px`,
                         top: `${tooltipPositions[item.id].top}px`,
@@ -283,7 +283,7 @@ const Sidebar = () => {
                       }}
                     >
                       {item.label}
-                      <div className="absolute right-full top-1/2 -translate-y-1/2 border-4 border-transparent border-r-gray-900"></div>
+                      <div className="absolute right-full top-1/2 -translate-y-1/2 border-4 border-transparent border-r-[#5D5BD0]"></div>
                     </div>
                   )}
 
@@ -413,7 +413,7 @@ const Sidebar = () => {
                 {/* Tooltip */}
                 {tooltipPositions[item.id] && (
                   <div 
-                    className="fixed px-2 py-1 bg-gray-900 text-white text-xs rounded-md whitespace-nowrap opacity-0 invisible group-hover/tooltip:opacity-100 group-hover/tooltip:visible transition-all duration-200 pointer-events-none z-[9999]" 
+                    className="fixed px-2 py-1 bg-[#5D5BD0] text-[#F1F1FB] text-xs rounded-md whitespace-nowrap opacity-0 invisible group-hover/tooltip:opacity-100 group-hover/tooltip:visible transition-all duration-200 pointer-events-none z-[9999]" 
                     style={{ 
                       left: `${tooltipPositions[item.id].left}px`,
                       top: `${tooltipPositions[item.id].top}px`,
@@ -421,7 +421,7 @@ const Sidebar = () => {
                     }}
                   >
                     {item.label}
-                    <div className="absolute right-full top-1/2 -translate-y-1/2 border-4 border-transparent border-r-gray-900"></div>
+                    <div className="absolute right-full top-1/2 -translate-y-1/2 border-4 border-transparent border-r-[#5D5BD0]"></div>
                   </div>
                 )}
               </Link>

@@ -257,10 +257,10 @@ const Header = () => {
           {/* Tooltip */}
           {openDropdown !== 'workspace' && tooltipPositions['workspace'] && (
             <div 
-              className="absolute top-full mt-2 left-1/2 -translate-x-1/2 px-3 py-1.5 bg-gray-900 text-white text-xs rounded-md whitespace-nowrap opacity-0 invisible group-hover/tooltip:opacity-100 group-hover/tooltip:visible transition-all duration-200 pointer-events-none z-[9999]"
+              className="absolute top-full mt-2 left-1/2 -translate-x-1/2 px-3 py-1.5 bg-[#5D5BD0] text-[#F1F1FB] text-xs rounded-md whitespace-nowrap opacity-0 invisible group-hover/tooltip:opacity-100 group-hover/tooltip:visible transition-all duration-200 pointer-events-none z-[9999]"
             >
               Workspace
-              <div className="absolute bottom-full left-1/2 -translate-x-1/2 border-4 border-transparent border-b-gray-900"></div>
+              <div className="absolute bottom-full left-1/2 -translate-x-1/2 border-4 border-transparent border-b-[#5D5BD0]"></div>
             </div>
           )}
 
@@ -293,10 +293,10 @@ const Header = () => {
           {/* Tooltip */}
           {openDropdown !== 'settings' && tooltipPositions['settings'] && (
             <div 
-              className="absolute top-full mt-2 left-1/2 -translate-x-1/2 px-3 py-1.5 bg-gray-900 text-white text-xs rounded-md whitespace-nowrap opacity-0 invisible group-hover/tooltip:opacity-100 group-hover/tooltip:visible transition-all duration-200 pointer-events-none z-[9999]"
+              className="absolute top-full mt-2 left-1/2 -translate-x-1/2 px-3 py-1.5 bg-[#5D5BD0] text-[#F1F1FB] text-xs rounded-md whitespace-nowrap opacity-0 invisible group-hover/tooltip:opacity-100 group-hover/tooltip:visible transition-all duration-200 pointer-events-none z-[9999]"
             >
               Settings
-              <div className="absolute bottom-full left-1/2 -translate-x-1/2 border-4 border-transparent border-b-gray-900"></div>
+              <div className="absolute bottom-full left-1/2 -translate-x-1/2 border-4 border-transparent border-b-[#5D5BD0]"></div>
             </div>
           )}
 
@@ -341,10 +341,10 @@ const Header = () => {
               {/* Tooltip */}
               {!isOpen && tooltipPositions[item.id] && (
                 <div 
-                  className="absolute top-full mt-2 left-1/2 -translate-x-1/2 px-3 py-1.5 bg-gray-900 text-white text-xs rounded-md whitespace-nowrap opacity-0 invisible group-hover/tooltip:opacity-100 group-hover/tooltip:visible transition-all duration-200 pointer-events-none z-[9999]"
+                  className="absolute top-full mt-2 left-1/2 -translate-x-1/2 px-3 py-1.5 bg-[#5D5BD0] text-[#F1F1FB] text-xs rounded-md whitespace-nowrap opacity-0 invisible group-hover/tooltip:opacity-100 group-hover/tooltip:visible transition-all duration-200 pointer-events-none z-[9999]"
                 >
                   {item.label}
-                  <div className="absolute bottom-full left-1/2 -translate-x-1/2 border-4 border-transparent border-b-gray-900"></div>
+                  <div className="absolute bottom-full left-1/2 -translate-x-1/2 border-4 border-transparent border-b-[#5D5BD0]"></div>
                 </div>
               )}
 
@@ -381,10 +381,10 @@ const Header = () => {
           {/* Tooltip */}
           {openDropdown !== 'profile' && tooltipPositions['profile'] && (
             <div 
-              className="absolute top-full mt-2 left-1/2 -translate-x-1/2 px-3 py-1.5 bg-gray-900 text-white text-xs rounded-md whitespace-nowrap opacity-0 invisible group-hover/tooltip:opacity-100 group-hover/tooltip:visible transition-all duration-200 pointer-events-none z-[9999]"
+              className="absolute top-full mt-2 left-1/2 -translate-x-1/2 px-3 py-1.5 bg-[#5D5BD0] text-[#F1F1FB] text-xs rounded-md whitespace-nowrap opacity-0 invisible group-hover/tooltip:opacity-100 group-hover/tooltip:visible transition-all duration-200 pointer-events-none z-[9999]"
             >
               Profile
-              <div className="absolute bottom-full left-1/2 -translate-x-1/2 border-4 border-transparent border-b-gray-900"></div>
+              <div className="absolute bottom-full left-1/2 -translate-x-1/2 border-4 border-transparent border-b-[#5D5BD0]"></div>
             </div>
           )}
 
