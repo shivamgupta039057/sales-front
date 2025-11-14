@@ -77,7 +77,7 @@ const LeadViewModal = ({ open, onClose, lead }) => {
               <div className='flex items-center gap-4'>
 
                   <div className="flex-1 min-w-0">
-                    <h3 className="text-[24px] font-bold text-gray-900 truncate">{lead?.name || 'Mahendra Yadav'}</h3>
+                    <h3 className="text-lg md:text-[24px] font-bold text-gray-900 truncate">{lead?.name || 'Mahendra Yadav'}</h3>
                     
                   </div>
                     {/* Middle: action buttons */}
@@ -223,9 +223,9 @@ const LeadViewModal = ({ open, onClose, lead }) => {
           </div>
 
           {/* History */}
-          <div className="px-6 pt-3 pb-4">
-            <h4 className="text-lg font-semibold text-gray-900 mb-2">History</h4>
-            <div className="relative overflow-hidden rounded-[10px] border border-[#D5D5D5] bg-gradient-to-br from-[#FFE5F5] via-[#F3E8FF] to-white p-3 flex flex-col z-20 h-[361px]">
+            <div className="px-6 pt-3 pb-4">
+            <h4 className="text-base md:text-lg font-semibold text-gray-900 mb-2">History</h4>
+            <div className="relative overflow-hidden rounded-[10px] border border-[#D5D5D5] bg-gradient-to-br from-[#FFE5F5] via-[#F3E8FF] to-white p-3 flex flex-col z-20 h-64 md:h-[361px]">
                 <div className='absolute inset-0 size-full -z-10'><img src="/chatbg.png" alt="history" className="size-full object-cover" /></div>
               
               <div className='flex-1 overflow-y-auto space-y-2 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden'>
@@ -252,8 +252,8 @@ const LeadViewModal = ({ open, onClose, lead }) => {
               ))}
               </div>
               <div className="mt-auto flex items-center gap-2 border-t border-white/60 pt-3">
-                <input className="flex-1 border border-[#D5D5D5] rounded-[10px] px-3 h-10 text-[13px] text-[#202224] placeholder:text-[#6C727F] bg-[#f5f9ff] focus:outline-none" placeholder="Type a message" />
-                <button className="h-10 w-10 inline-flex items-center justify-center rounded-[10px] bg-[#3B82F6] text-white hover:bg-[#2563EB]"><Send className="w-4 h-4"/></button>
+                <input className="flex-1 border border-[#D5D5D5] rounded-[10px] px-3 h-10 sm:h-11 text-sm text-[#202224] placeholder:text-[#6C727F] bg-white focus:outline-none" placeholder="Type a message" />
+                <button className="h-10 sm:h-11 w-10 sm:w-11 inline-flex items-center justify-center rounded-[10px] bg-[#3B82F6] text-white hover:bg-[#2563EB]"><Send className="w-4 h-4"/></button>
               </div>
             </div>
           </div>
@@ -271,9 +271,8 @@ const InfoRow = ({ icon, label, value }) => (
       {icon}
     </div>
     <div>
-      <div className="text-[14px] 
-       text-[#898989">{label}</div>
-      <div className="text-[15px] text-[#000000] font-semibold">{value}</div>
+      <div className="text-xs md:text-[14px] text-[#898989]">{label}</div>
+      <div className="text-sm md:text-[15px] text-[#000000] font-semibold">{value}</div>
     </div>
   </div>
 );

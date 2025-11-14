@@ -244,7 +244,7 @@ const LeadManagement = () => {
                       // Handle apply filter logic here
                       setIsFilterOpen(false);
                     }}
-                    className="px-6 py-2 text-sm font-medium text-white bg-[#9333EA] rounded-[10px] hover:bg-[#7e22ce] transition-colors"
+                    className="px-6 py-2 text-sm font-medium text-white bg-[#4880FF] rounded-[10px]  transition-colors"
                   >
                     Apply Now
                   </button>

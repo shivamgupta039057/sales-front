@@ -105,6 +105,12 @@ const sidebarMenuItems = [
     label: 'Staff Management',
     icon: Grid3x3,
     href: '/dashboard/staff'
+  },
+  {
+    id: 'user-management',
+    label: 'User Management',
+    icon: Users,
+    href: '/dashboard/users'
   }
 ];
 
@@ -170,19 +176,19 @@ const Sidebar = () => {
                     aria-haspopup="menu"
                     className={`group sidebar-item relative flex transition duration-300 !items-center justify-center px-0 h-12 rounded-[10px] ${
                       leadsMenuActive
-                        ? 'bg-[#9333EA]/10 text-[#9333EA]'
+                        ? 'bg-[#4880FF]/10 text-[#4880FF]'
                         : 'bg-transparent text-[#4B4743] hover:bg-gray-100'
                     }`}
                   >
                     {leadsMenuActive && (
-                      <span className="absolute left-[-12.5px] top-1/2 -translate-y-1/2 h-5 w-1 rounded-r bg-[#9333EA]"></span>
+                      <span className="absolute left-[-12.5px] top-1/2 -translate-y-1/2 h-5 w-1 rounded-r bg-[#4880FF]"></span>
                     )}
                     <span className="flex items-center justify-center w-6 h-6">
                       <IconComponent
                         className={`w-5 h-5 transition duration-300 ${
                           leadsMenuActive
-                            ? 'text-[#9333EA]'
-                            : 'text-[#4B4743] group-hover:text-[#9333EA]'
+                            ? 'text-[#4880FF]'
+                            : 'text-[#4B4743] group-hover:text-[#4880FF]'
                         }`}
                       />
                     </span>
@@ -201,17 +207,17 @@ const Sidebar = () => {
                               </div>
                             );
                           }
-                          const subActive = sub.id === 'leads' ? pathname?.startsWith('/leads') : false;
-                          // Only 'Leads' navigates. Others trigger a modal event and do not change URL.
-                          if (sub.id === 'leads') {
+                          const subActive = sub.id === 'leads' ? pathname?.startsWith('/leads') : (sub.id === 'add-single-lead' ? pathname === '/leads/add-single' : false);
+                          // 'Leads' and 'Add Single Lead' navigate; others trigger modal/events.
+                          if (sub.id === 'leads' || sub.id === 'add-single-lead') {
                             return (
                               <Link
                                 key={sub.id}
-                                href={sub.href || '/leads'}
+                                href={sub.id === 'add-single-lead' ? '/leads/add-single' : (sub.href || '/leads')}
                                 onClick={() => setOpenMenuId(null)}
                                 className={`flex items-center gap-3 rounded-[10px] px-3 py-2 text-sm hover:bg-gray-50 ${
                                   subActive 
-                                    ? 'bg-[#9333EA]/10 text-[#9333EA]' 
+                                    ? 'bg-[#4880FF]/10 text-[#4880FF]' 
                                     : 'text-gray-800'
                                 }`}
                               >
@@ -255,19 +261,19 @@ const Sidebar = () => {
                 aria-current={active ? 'page' : undefined}
                 className={`group sidebar-item relative flex transition duration-300 !items-center justify-center px-0 h-12 rounded-[10px] ${
                   active
-                    ? 'bg-[#9333EA]/10 text-[#9333EA]'
+                    ? 'bg-[#4880FF]/10 text-[#4880FF]'
                     : 'bg-transparent text-[#4B4743] hover:bg-gray-100'
                 }`}
               >
                 {active && (
-                  <span className="absolute left-[-12.5px] top-1/2 -translate-y-1/2 h-5 w-1 rounded-r bg-[#9333EA]"></span>
+                  <span className="absolute left-[-12.5px] top-1/2 -translate-y-1/2 h-5 w-1 rounded-r bg-[#4880FF]"></span>
                 )}
                 <span className="flex items-center justify-center w-6 h-6">
                   <IconComponent
                     className={`w-5 h-5 transition duration-300 ${
                       active
-                        ? 'text-[#9333EA]'
-                        : 'text-[#4B4743] group-hover:text-[#9333EA]'
+                        ? 'text-[#4880FF]'
+                        : 'text-[#4B4743] group-hover:text-[#4880FF]'
                     }`}
                   />
                 </span>

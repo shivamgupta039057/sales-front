@@ -250,7 +250,7 @@ const LeadManagementNewDashboard = () => {
                       return `${x},${y}`;
                     }).join(' ')}
                     fill="none"
-                    stroke="#9333EA"
+                    stroke="#4880FF"
                     strokeWidth="2"
                   />
                   
@@ -264,14 +264,14 @@ const LeadManagementNewDashboard = () => {
                           cx={x}
                           cy={y}
                           r="4"
-                          fill="#9333EA"
+                          fill="#4880FF"
                         />
                         {d.month === 'DEC' && (
                           <text
                             x={x}
                             y={y - 10}
                             textAnchor="middle"
-                            fill="#9333EA"
+                            fill="#4880FF"
                             fontSize="12"
                             fontWeight="500"
                           >

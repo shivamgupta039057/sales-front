@@ -64,12 +64,12 @@ const DataTable = ({ columns = [], rows = [], pageSize = 10, className = '', onR
     <div className={`w-full ${className}`}>
       <div className="overflow-x-auto border border-gray-200 rounded-[10px]">
         <table className="min-w-full divide-y divide-gray-200">
-          <thead className="bg-[#E4E6ED">
+          <thead className="bg-[#E4E6ED]">
             <tr>
-              <th className="px-3 py-3 text-left text-[14px] font-bold text-[#464F60] uppercase tracking-wider">
+              <th className="px-3 py-3 text-left text-xs md:text-[14px] font-bold text-[#464F60] uppercase tracking-wider">
                 <input
                   type="checkbox"
-                  className="w-4 h-4 accent-[#9333EA] focus:outline-none"
+                  className="w-4 h-4 accent-[#4880FF] focus:outline-none"
                   checked={allVisibleSelected}
                   onChange={toggleAllVisible}
                 />
@@ -78,7 +78,7 @@ const DataTable = ({ columns = [], rows = [], pageSize = 10, className = '', onR
                 <th
                   key={col.key}
                   style={{ width: col.width }}
-                  className={`px-3 py-3 ${col.align === 'right' ? 'text-right' : 'text-left'} text-[14px] font-medium text-[#464F60] uppercase tracking-wider select-none ${col.sortable ? 'cursor-pointer' : ''}`}
+                  className={`px-3 py-3 ${col.align === 'right' ? 'text-right' : 'text-left'} text-xs md:text-[14px] font-medium text-[#464F60] uppercase tracking-wider select-none ${col.sortable ? 'cursor-pointer' : ''}`}
                   onClick={col.sortable ? () => toggleSort(col.key) : undefined}
                 >
                   <div className={`flex items-center gap-1 ${col.align === 'right' ? 'justify-end' : ''}`}>
@@ -103,13 +103,13 @@ const DataTable = ({ columns = [], rows = [], pageSize = 10, className = '', onR
                 <td className="px-3 py-3">
                   <input
                     type="checkbox"
-                    className="w-4 h-4 accent-[#9333EA] focus:outline-none"
+                    className="w-4 h-4 accent-[#4880FF] focus:outline-none"
                     checked={selected.has(row.id)}
                     onChange={() => toggleRow(row.id)}
                   />
                 </td>
                 {columns.map((col) => {
-                  const base = `px-3 py-3 text-sm text-[#4880FF] whitespace-nowrap ${col.align === 'right' ? 'text-right' : 'text-left'}`;
+                  const base = `px-3 py-3 text-xs md:text-sm text-[#4880FF] whitespace-nowrap ${col.align === 'right' ? 'text-right' : 'text-left'}`;
                   let content;
                   if (col.render) {
                     content = col.render(row[col.key], row);

@@ -155,7 +155,7 @@ const CreateFieldModal = ({ open, onClose, onSave }) => {
 
           <button
             onClick={() => setShowProperties(!showProperties)}
-            className="flex items-center gap-2 text-sm text-[#9333EA] hover:text-[#7e22ce] font-medium"
+            className="flex items-center gap-2 text-sm text-[#4880FF] hover:text-[#7e22ce] font-medium"
           >
             <span>Properties</span>
             <ChevronDown className={`w-4 h-4 transition-transform ${showProperties ? 'rotate-180' : ''}`} />
@@ -171,7 +171,7 @@ const CreateFieldModal = ({ open, onClose, onSave }) => {
           </button>
           <button
             onClick={handleSubmit}
-            className="px-4 py-2 text-sm font-medium text-white bg-[#9333EA] rounded-[10px] hover:bg-[#7e22ce] transition-colors"
+            className="px-4 py-2 text-sm font-medium text-white bg-[#4880FF] rounded-[10px]  transition-colors"
           >
             Create Field
           </button>
@@ -294,15 +294,24 @@ const AddSingleLeadModal = ({ open, onClose }) => {
             <div className="flex items-center gap-3">
               <h2 className="text-xl font-semibold text-gray-900">Fields Settings</h2>
               <button className="p-1.5 rounded hover:bg-gray-100 transition-colors">
-                <RefreshCw className="w-4 h-4 text-gray-600" />
+                <RefreshCw className="w-4 h-4 text-[#4880FF]" />
               </button>
             </div>
-            <button
-              onClick={onClose}
-              className="p-2 rounded-[10px] hover:bg-gray-100 transition-colors"
-            >
-              <X className="w-5 h-5 text-gray-600" />
-            </button>
+            <div className="flex items-center gap-3">
+              <button
+                onClick={() => setShowCreateField(true)}
+                className="px-4 py-2 text-sm font-medium text-white bg-[#4880FF] rounded-[10px]  transition-colors flex items-center gap-2"
+              >
+                <Plus className="w-4 h-4" />
+                Add a new field
+              </button>
+              <button
+                onClick={onClose}
+                className="p-2 rounded-[10px] hover:bg-gray-100 transition-colors"
+              >
+                <X className="w-5 h-5 text-gray-600" />
+              </button>
+            </div>
           </div>
 
           {/* Content */}
@@ -310,7 +319,7 @@ const AddSingleLeadModal = ({ open, onClose }) => {
             {/* Lead Id Section */}
             <div className="flex items-center gap-2 pb-4 border-b border-gray-200">
               <span className="text-sm font-medium text-gray-900">Lead Id</span>
-              <button className="text-xs text-blue-600 hover:text-blue-700 underline">Learn more</button>
+              <button className="text-xs text-[#4880FF] hover:text-[#7e22ce] underline">Learn more</button>
             </div>
 
             {/* Current Lead Identifier */}
@@ -322,7 +331,7 @@ const AddSingleLeadModal = ({ open, onClose }) => {
                   <div className="text-xs text-gray-500">+91 9999999999</div>
                 </div>
               </div>
-              <button className="px-3 py-1.5 text-sm font-medium text-[#9333EA] hover:bg-[#9333EA]/10 rounded-[10px] transition-colors">
+              <button className="px-3 py-1.5 text-sm font-medium text-[#4880FF] hover:bg-[#4880FF]/10 rounded-[10px] transition-colors">
                 Change
               </button>
             </div>
@@ -375,15 +384,8 @@ const AddSingleLeadModal = ({ open, onClose }) => {
 
             {/* OTHER FIELDS */}
             <div>
-              <div className="flex items-center justify-between mb-4 pb-3 border-b border-gray-200">
+              <div className="flex items-center gap-2 mb-4 pb-3 border-b border-gray-200">
                 <h3 className="text-base font-semibold text-gray-900">OTHER FIELDS</h3>
-                <button
-                  onClick={() => setShowCreateField(true)}
-                  className="px-4 py-2 text-sm font-medium text-white bg-[#9333EA] rounded-[10px] hover:bg-[#7e22ce] transition-colors flex items-center gap-2"
-                >
-                  <Plus className="w-4 h-4" />
-                  Add a new field
-                </button>
               </div>
 
               {/* Search and Filters */}
@@ -417,7 +419,7 @@ const AddSingleLeadModal = ({ open, onClose }) => {
                           }}
                           className={`w-full text-left px-4 py-2 text-sm hover:bg-gray-50 ${
                             (typeFilter === 'all' && type === 'All') || typeFilter === type.toLowerCase()
-                              ? 'bg-[#9333EA]/10 text-[#9333EA]'
+                              ? 'bg-[#4880FF]/10 text-[#4880FF]'
                               : 'text-gray-700'
                           }`}
                         >
@@ -516,7 +518,7 @@ const AddSingleLeadModal = ({ open, onClose }) => {
             </button>
             <button
               onClick={handleSaveLead}
-              className="px-6 py-2 text-sm font-medium text-white bg-[#9333EA] rounded-[10px] hover:bg-[#7e22ce] transition-colors"
+              className="px-6 py-2 text-sm font-medium text-white bg-[#4880FF] rounded-[10px]  transition-colors"
             >
               Save Lead
             </button>
