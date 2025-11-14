@@ -238,20 +238,21 @@ const Header = () => {
   ];
 
   return (
-    <header className="bg-white shadow-sm px-3 flex justify-between items-center z-40 border-b border-gray-100 h-[47px] shrink-0">
-      {/* Left Section - Workspace Selector */}
-      <div className="flex items-center gap-3">
+    <header className="fixed top-0 left-[47px] right-0 bg-white shadow-sm px-3 flex justify-between items-center z-40 border-b border-gray-100 h-[47px]">
+      {/* Left Section - Workspace Selector and Settings in Single Container */}
+      <div className="relative flex items-stretch bg-white border border-[#D5D5D5]/60 rounded-full overflow-visible shadow-[inset_0_0_0_1px_rgba(0,0,0,0.02)]">
+        {/* Workspace Selector */}
         <button
           ref={(el) => {
             if (el) itemRefs.current['workspace'] = el;
           }}
           onClick={() => setOpenDropdown(openDropdown === 'workspace' ? null : 'workspace')}
-          className="group/tooltip relative flex items-center gap-2 px-3 py-2 rounded-[10px] bg-gray-50 border border-gray-200 hover:bg-gray-100 transition-colors h-10"
+          className="group/tooltip relative flex items-center gap-2 ps-1 px-3 py-2 h-10"
         >
-          <div className="w-8 h-8 rounded-full bg-[#4880FF] flex items-center justify-center shrink-0">
+          <div className="w-8 h-8 rounded-full bg-[#5D5BD0] flex items-center justify-center shrink-0">
             <span className="text-white font-bold text-xs">V</span>
           </div>
-          <span className="text-sm font-medium text-gray-900 hidden sm:block whitespace-nowrap">VISUTI CAREER</span>
+          <span className="text-sm font-medium text-[#202224] whitespace-nowrap">VISUTI CAREER</span>
           <ChevronDown className={`w-4 h-4 text-gray-500 transition-transform shrink-0 ${openDropdown === 'workspace' ? 'rotate-180' : ''}`} />
           
           {/* Tooltip */}
@@ -277,17 +278,19 @@ const Header = () => {
           )}
         </button>
 
+        {/* Separator */}
+        <div className="w-px bg-gray-200" />
+
         {/* Settings Icon */}
-        <div className="h-6 w-px bg-gray-200"></div>
         <div className="relative group/tooltip">
           <button
             ref={(el) => {
               if (el) itemRefs.current['settings'] = el;
             }}
             onClick={() => setOpenDropdown(openDropdown === 'settings' ? null : 'settings')}
-            className="relative p-2 rounded-[10px] hover:bg-gray-50 transition-colors h-10 w-10 flex items-center justify-center"
+            className="relative px-3 py-2 h-10 flex items-center justify-center"
           >
-            <Settings className="w-5 h-5 text-gray-600" />
+            <Settings className="w-5 h-5 text-[#202224]" />
           </button>
 
           {/* Tooltip */}
