@@ -225,10 +225,10 @@ const Header = () => {
                   <Users className="w-4 h-4 text-gray-600" />
                   <span>Users</span>
                 </a>
-                <a href="#" className="flex items-center gap-2.5 px-2 py-1.5 text-xs text-gray-800 hover:bg-gray-50 rounded-[6px] transition-colors">
+                <Link href="/dashboard/permission-templates" className="flex items-center gap-2.5 px-2 py-1.5 text-xs text-gray-800 hover:bg-gray-50 rounded-[6px] transition-colors">
                   <Shield className="w-4 h-4 text-gray-600" />
                   <span>Permission Templates</span>
-                </a>
+                </Link>
               </div>
             </div>
           </div>
