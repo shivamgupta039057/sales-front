@@ -17,10 +17,13 @@ import {
   Briefcase,
   Network
 } from 'lucide-react';
+import PermissionTemplateOffcanvas from './PermissionTemplateOffcanvas';
 
 const PermissionTemplatesPage = () => {
   const [activeTab, setActiveTab] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
+  const [selectedTemplate, setSelectedTemplate] = useState(null);
+  const [isOffcanvasOpen, setIsOffcanvasOpen] = useState(false);
 
   // Sample data
   const templates = [
@@ -98,6 +101,16 @@ const PermissionTemplatesPage = () => {
     }
     return matchesSearch;
   });
+
+  const handleEditClick = (template) => {
+    setSelectedTemplate(template);
+    setIsOffcanvasOpen(true);
+  };
+
+  const handleCloseOffcanvas = () => {
+    setIsOffcanvasOpen(false);
+    setSelectedTemplate(null);
+  };
 
   return (
     <div className="p-5">
@@ -240,7 +253,11 @@ const PermissionTemplatesPage = () => {
                             <Eye className="w-4 h-4 text-gray-600" />
                           </button>
                         ) : (
-                          <button className="p-1.5 hover:bg-gray-100 rounded-md transition-colors" title="Edit">
+                          <button
+                            className="p-1.5 hover:bg-gray-100 rounded-md transition-colors"
+                            title="Edit"
+                            onClick={() => handleEditClick(template)}
+                          >
                             <Edit className="w-4 h-4 text-gray-600" />
                           </button>
                         )}
@@ -261,6 +278,12 @@ const PermissionTemplatesPage = () => {
           </table>
         </div>
       </div>
+
+      <PermissionTemplateOffcanvas
+        open={isOffcanvasOpen}
+        template={selectedTemplate}
+        onClose={handleCloseOffcanvas}
+      />
     </div>
   );
 };
