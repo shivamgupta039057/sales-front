@@ -1124,18 +1124,18 @@ const PermissionTemplateOffcanvas = ({ open, template, onClose }) => {
         onClick={onClose}
       />
       <div
-        className={`absolute inset-y-0 right-0 w-full max-w-5xl bg-white shadow-2xl flex flex-col transition-transform duration-300 ${
+        className={`absolute inset-y-0 right-0 w-full sm:max-w-lg md:max-w-3xl lg:max-w-5xl bg-white shadow-2xl flex flex-col transition-transform duration-300 ${
           open ? 'translate-x-0' : 'translate-x-full'
         }`}
       >
-        <div className="flex flex-1 overflow-hidden">
-          <aside className="w-72 border-r border-[#EFEFF6] bg-[#F7F7FB] flex flex-col">
-            <div className="p-6 border-b border-[#EFEFF6]">
+        <div className="flex flex-col md:flex-row flex-1 overflow-y-auto md:overflow-hidden">
+          <aside className="w-full md:w-72 border-r border-[#EFEFF6] bg-[#F7F7FB] flex flex-col flex-shrink-0 md:overflow-y-auto">
+            <div className="p-4 sm:p-6 border-b border-[#EFEFF6] flex-shrink-0">
               <p className="text-xs uppercase tracking-wide text-[#7A7A85]">
                 Permission template
               </p>
               <div className="flex items-start justify-between gap-2 mt-2">
-                <h2 className="text-xl font-semibold text-[#1F1F2C] leading-snug">
+                <h2 className="text-lg sm:text-xl font-semibold text-[#1F1F2C] leading-snug">
                   {template?.name || 'Permission Template'}
                 </h2>
                 <button className="p-1 rounded-md hover:bg-white">
@@ -1144,7 +1144,7 @@ const PermissionTemplateOffcanvas = ({ open, template, onClose }) => {
               </div>
             </div>
 
-            <div className="p-6 space-y-4">
+            <div className="p-4 sm:p-6 space-y-4">
               <div>
                 <button
                   onClick={() => setAccessAccordionExpanded(!accessAccordionExpanded)}
@@ -1251,34 +1251,35 @@ const PermissionTemplateOffcanvas = ({ open, template, onClose }) => {
               </div>
             </div>
 
-            <div className="mt-auto border-t border-[#EFEFF6] p-4 flex items-center gap-2 text-xs text-[#7A7A85]">
-              <Info className="w-4 h-4" />
-              Templates help reuse permission logic across roles.
+            <div className="mt-auto border-t border-[#EFEFF6] p-3 sm:p-4 flex items-center gap-2 text-xs text-[#7A7A85] flex-shrink-0">
+              <Info className="w-4 h-4 flex-shrink-0" />
+              <span className="hidden sm:inline">Templates help reuse permission logic across roles.</span>
+              <span className="sm:hidden">Templates help reuse permission logic.</span>
             </div>
           </aside>
 
-          <div className="flex-1 flex flex-col">
-            <div className="flex items-center justify-between px-6 py-4 border-b border-[#EFEFF6]">
-              <div>
+          <div className="flex-1 flex flex-col min-w-0 flex-shrink-0">
+            <div className="flex items-center justify-between px-4 sm:px-6 py-3 sm:py-4 border-b border-[#EFEFF6] flex-shrink-0">
+              <div className="min-w-0 flex-1">
                 <p className="text-xs uppercase tracking-wide text-[#7A7A85]">
                   Edit permissions
                 </p>
-                <h3 className="text-2xl font-semibold text-[#111322]">
+                <h3 className="text-xl sm:text-2xl font-semibold text-[#111322] truncate">
                   {selectedAccessItem}
                 </h3>
               </div>
               <button
                 onClick={onClose}
-                className="p-2 rounded-full hover:bg-gray-100 transition"
+                className="p-2 rounded-full hover:bg-gray-100 transition flex-shrink-0"
                 aria-label="Close"
               >
                 <X className="w-5 h-5 text-gray-600" />
               </button>
             </div>
 
-            <div className="flex-1 overflow-y-auto p-6 space-y-6 bg-[#FBFBFD]">
+            <div className="flex-1 md:overflow-y-auto p-4 sm:p-6 space-y-4 sm:space-y-6 bg-[#FBFBFD]">
               {selectedAccessItem === 'Team' ? (
-                <div className="space-y-6">
+                <div className="space-y-4 sm:space-y-6">
                   {/* Can view team page */}
                   <div className="rounded-[14px] border border-[#E4E4EA] bg-white shadow-sm">
                     <div className="flex items-center justify-between px-4 sm:px-5 py-3">
@@ -1358,7 +1359,7 @@ const PermissionTemplateOffcanvas = ({ open, template, onClose }) => {
                   </div>
                 </div>
               ) : selectedAccessItem === 'Permissions' ? (
-                <div className="space-y-6">
+                <div className="space-y-4 sm:space-y-6">
                   {/* Access Accordion */}
                   <div className="rounded-[14px] border border-[#E4E4EA] bg-white shadow-sm">
                     <button
@@ -1442,18 +1443,18 @@ const PermissionTemplateOffcanvas = ({ open, template, onClose }) => {
               )}
             </div>
 
-            <div className="flex items-center justify-between border-t border-[#EFEFF6] px-6 py-4 bg-white">
-              <div className="text-xs text-[#7A7A85]">
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between border-t border-[#EFEFF6] px-4 sm:px-6 py-3 sm:py-4 bg-white gap-3 flex-shrink-0">
+              <div className="text-xs text-[#7A7A85] hidden sm:block">
                 Changes auto-save to this template.
               </div>
-              <div className="flex gap-3">
+              <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 w-full sm:w-auto">
                 <button
                   onClick={onClose}
-                  className="px-5 py-2 rounded-[10px] border border-[#D7D7E3] text-sm font-medium text-[#111322]"
+                  className="w-full sm:w-auto px-4 sm:px-5 py-2 rounded-[10px] border border-[#D7D7E3] text-sm font-medium text-[#111322]"
                 >
                   Close
                 </button>
-                <button className="px-5 py-2 rounded-[10px] bg-[#5D5BD0] text-white text-sm font-semibold shadow-sm">
+                <button className="w-full sm:w-auto px-4 sm:px-5 py-2 rounded-[10px] bg-[#5D5BD0] text-white text-sm font-semibold shadow-sm">
                   Save template
                 </button>
               </div>
