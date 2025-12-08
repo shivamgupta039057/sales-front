@@ -28,7 +28,11 @@ import {
   Bot,
   Table,
   Phone,
-  TrendingUp
+  TrendingUp,
+  GitBranch,
+  AlarmClock,
+  Workflow,
+  Cloud
 } from 'lucide-react';
 
 const sidebarMenuItems = [
@@ -113,16 +117,22 @@ const sidebarMenuItems = [
   {
     id: 'automations',
     label: 'Automations',
-    icon: Sparkles,
-    href: '/automations'
+    icon: Sparkles, 
+    href: null, 
+    submenu: [
+      { id: 'workflows', label: 'Workflows', href: '/automations/workflows', icon: GitBranch },
+      { id: 'schedules', label: 'Schedules', href: '/automations/schedules', icon: AlarmClock },
+      { id: 'salesform', label: 'Salesform', href: '/automations/salesform', icon: Workflow },
+      { id: 'api-templates', label: 'API Templates', href: '/automations/api-templates', icon: Cloud }
+    ]
   },
-  {
+  { 
     id: 'integrations',
-    label: 'Integrations',
+    label: 'Integrations', 
     icon: LinkIcon,
     href: '/integrations'
   },
-  {
+  { 
     id: 'ai-agents',
     label: 'AI Agents',
     icon: Bot,
@@ -188,13 +198,13 @@ const Sidebar = () => {
         if (currentItem && currentItem.submenu) {
           const buttonElement = itemRefs.current[openMenuId];
           const dropdownElement = document.querySelector(`[data-dropdown-id="${openMenuId}"]`);
-          
+           
           if (
             buttonElement &&
             !buttonElement.contains(event.target) &&
             dropdownElement &&
             !dropdownElement.contains(event.target)
-          ) {
+          ) { 
             setOpenMenuId(null);
           }
         }
