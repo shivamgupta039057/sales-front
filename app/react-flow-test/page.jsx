@@ -292,16 +292,27 @@ export default function WorkflowBuilder({ initialGraph = { nodes: [], edges: [] 
   };
 
   return (
-    <div style={{ display: "flex", height: "100vh" }}>
-      {/* Left Sidebar */}
-      <WorkflowSidebar
-        paletteItems={paletteItems}
-        onDragStart={onDragStart}
-        handleSaveWorkflow={handleSaveWorkflow}
-      />
+    <>
+      <style>{`
+        @media (max-width: 768px) {
+          .workflow-container {
+            flex-direction: column !important;
+          }
+          .canvas-container {
+            height: 60vh !important;
+          }
+        }
+      `}</style>
+      <div className="workflow-container" style={{ display: "flex", height: "100vh" }}>
+        {/* Left Sidebar */}
+        <WorkflowSidebar
+          paletteItems={paletteItems}
+          onDragStart={onDragStart}
+          handleSaveWorkflow={handleSaveWorkflow}
+        />
 
-      {/* Right Side: TopBar + Canvas */}
-      <div style={{ display: "flex", flexDirection: "column", flex: 1 }}>
+        {/* Right Side: TopBar + Canvas */}
+        <div style={{ display: "flex", flexDirection: "column", flex: 1 }}>
         {/* Top Bar */}
         <WorkflowTopBar
           workflowName={workflowName}
@@ -314,7 +325,7 @@ export default function WorkflowBuilder({ initialGraph = { nodes: [], edges: [] 
         />
 
         {/* Flow area */}
-        <div style={{ flex: 1, position: "relative" }}>
+        <div className="canvas-container" style={{ flex: 1, position: "relative" }}>
         <div ref={reactFlowWrapper} style={{ width: "100%", height: "100%" }}>
           <ReactFlow
             nodes={nodes}
@@ -355,7 +366,8 @@ export default function WorkflowBuilder({ initialGraph = { nodes: [], edges: [] 
         onSave={handleOffcanvasSave}
       />
       </div>
-    </div>
+      </div>
+    </>
   );
 }
 

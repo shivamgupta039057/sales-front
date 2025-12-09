@@ -36,7 +36,15 @@ export default function NodeSettingsOffcanvas({ isOpen, onClose, node, onSave })
       />
 
       {/* Offcanvas Panel */}
+      <style>{`
+        @media (max-width: 768px) {
+          .offcanvas-panel {
+            width: 100% !important;
+          }
+        }
+      `}</style>
       <div
+        className="offcanvas-panel"
         style={{
           position: "fixed",
           top: 0,

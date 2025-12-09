@@ -23,23 +23,63 @@ export default function WorkflowTopBar({
   onDelete = () => {},
 }) {
   return (
-    <div
-      style={{
-        width: "100%",
-        height: 64,
-        background: "#fff",
-        borderBottom: "1px solid #e5e7eb",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "space-between",
-        padding: "0 24px",
-        position: "sticky",
-        top: 0,
-        zIndex: 100,
-      }}
-    >
+    <>
+      <style>{`
+        @media (max-width: 768px) {
+          .topbar-container {
+            padding: 0 12px !important;
+            height: auto !important;
+            min-height: 64px !important;
+            flex-wrap: wrap;
+          }
+          .topbar-left {
+            flex: 1;
+            min-width: 200px;
+          }
+          .topbar-right {
+            gap: 8px !important;
+          }
+          .workflow-title {
+            font-size: 16px !important;
+          }
+          .workflow-subtitle {
+            font-size: 12px !important;
+          }
+          .publish-btn {
+            padding: 8px 16px !important;
+            font-size: 13px !important;
+          }
+        }
+        @media (max-width: 480px) {
+          .topbar-container {
+            padding: 0 8px !important;
+          }
+          .workflow-title {
+            font-size: 14px !important;
+          }
+          .error-text {
+            display: none !important;
+          }
+        }
+      `}</style>
+      <div
+        className="topbar-container"
+        style={{
+          width: "100%",
+          height: 64,
+          background: "#fff",
+          borderBottom: "1px solid #e5e7eb",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          padding: "0 24px",
+          position: "sticky",
+          top: 0,
+          zIndex: 100,
+        }}
+      >
       {/* Left Section */}
-      <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
+      <div className="topbar-left" style={{ display: "flex", alignItems: "center", gap: 16 }}>
         <button
           onClick={onBack}
           style={{
@@ -62,6 +102,7 @@ export default function WorkflowTopBar({
         <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
           <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
             <h1
+              className="workflow-title"
               style={{
                 margin: 0,
                 fontSize: 18,
@@ -84,6 +125,7 @@ export default function WorkflowTopBar({
             </span>
             {errorCount > 0 && (
               <div
+                className="error-text"
                 style={{
                   display: "flex",
                   alignItems: "center",
@@ -111,17 +153,18 @@ export default function WorkflowTopBar({
               </div>
             )}
           </div>
-          <span style={{ fontSize: 13, color: "#9ca3af" }}>
+          <span className="workflow-subtitle" style={{ fontSize: 13, color: "#9ca3af" }}>
             Workflow Type: {workflowType}
           </span>
         </div>
       </div>
 
       {/* Right Section */}
-      <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+      <div className="topbar-right" style={{ display: "flex", alignItems: "center", gap: 12 }}>
         <button
           onClick={onPublish}
           disabled={errorCount > 0}
+          className="publish-btn"
           style={{
             padding: "10px 24px",
             background: errorCount > 0 ? "#e0e7ff" : "#6366f1",
@@ -174,5 +217,6 @@ export default function WorkflowTopBar({
         </button>
       </div>
     </div>
+    </>
   );
 }
