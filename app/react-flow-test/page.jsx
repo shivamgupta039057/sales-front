@@ -3,6 +3,8 @@
 import React, { useCallback, useRef, useState , useEffect } from "react";
 import { CustomTriggerNode } from "./useCustomeDesign.jsx";
 import WorkflowSidebar from "./components/WorkflowSidebar";
+import WorkflowTopBar from "./components/WorkflowTopBar";
+import NodeSettingsOffcanvas from "./components/NodeSettingsOffcanvas";
 // import React, {  useEffect } from "react";
 import ReactFlow, {
   addEdge,
@@ -28,15 +30,19 @@ import "reactflow/dist/style.css";
 */
 
 const paletteItems = [
-  { type: "trigger", label: "On Facebook Lead", sub : "Facebook Lead" ,  color: "#4f38a2"  },
-  { type: "trigger", label: "On WhatsApp Lead",sub : "WhatsApp Lead" , color: "#4f38a2" },
-  { type: "trigger", label: "Lead Field Change",  sub : "Lead Field" , color: "#4f38a2" },
-  { type: "trigger", label: "Lead Status Change",  sub : "Lead Status" , color: "#4f38a2" },
-  { type: "action", label: "update Lead Field", color: "#2563eb" },
-  { type: "action", label: "update Status Change", color: "#2563eb" },
-  { type: "action", label: "Send Template", color: "#2563eb" },
-  { type: "action", label: "Assign to Counselor", color: "#7c3aed" },
-  { type: "condition", label: "If Lead Status is", color: "#f59e0b" },
+  { type: "trigger", label: "On Facebook Lead", sub : "Facebook Lead" ,  color: "#4f38a2", icon: "facebook"  },
+  { type: "trigger", label: "On WhatsApp Lead",sub : "WhatsApp Lead" , color: "#4f38a2", icon: "whatsapp" },
+  { type: "trigger", label: "Lead Field Change",  sub : "Lead Field" , color: "#4f38a2", icon: "field" },
+  { type: "trigger", label: "Lead Status Change",  sub : "Lead Status" , color: "#4f38a2", icon: "status" },
+  { type: "action", label: "Call API", color: "#2563eb", icon: "api" },
+  { type: "action", label: "Notification To TeamMember", color: "#2563eb", icon: "notification" },
+  { type: "action", label: "Update Lead Assignee", color: "#2563eb", icon: "assignee" },
+  { type: "action", label: "Update Lead Fields", color: "#2563eb", icon: "fields" },
+  { type: "action", label: "Update Lead Rating", color: "#7c3aed", icon: "rating" },
+  { type: "action", label: "Update Lead Status", color: "#7c3aed", icon: "status-update" },
+  { type: "action", label: "Time Delay", color: "#7c3aed", icon: "time" },
+  { type: "action", label: "Send WhatsApp", color: "#25D366", icon: "send-whatsapp" },
+  { type: "condition", label: "If Lead Status is", color: "#f59e0b", icon: "condition" },
 ];
 
 const nodeStyle = (bg = "#fff") => ({
@@ -63,6 +69,7 @@ function TriggerNode({ data }) {
       color={data?.color}
       onClone={data?.onClone ? () => data.onClone(data) : undefined}
       onDelete={data?.onDelete ? () => data.onDelete(data) : undefined}
+      onEdit={data?.onEdit ? () => data.onEdit(data) : undefined}
       data={data}
     />
   );
@@ -83,6 +90,7 @@ function ActionNode({ data }) {
     color={data?.color}
     onClone={data?.onClone ? () => data.onClone(data) : undefined}
     onDelete={data?.onDelete ? () => data.onDelete(data) : undefined}
+    onEdit={data?.onEdit ? () => data.onEdit(data) : undefined}
     data={data}
   />
   );
@@ -149,6 +157,11 @@ export default function WorkflowBuilder({ initialGraph = { nodes: [], edges: [] 
   const [nodes, setNodes, onNodesChange] = useNodesState(initialGraph.nodes || []);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialGraph.edges || []);
   const [selectedNode, setSelectedNode] = useState(null);
+  const [offcanvasOpen, setOffcanvasOpen] = useState(false);
+  const [editingNode, setEditingNode] = useState(null);
+  const [workflowName, setWorkflowName] = useState("On System Note");
+  const [workflowStatus, setWorkflowStatus] = useState("Draft");
+  const [errorCount, setErrorCount] = useState(1);
 
   // reactflow instance ref (to convert drop pos)
   const reactFlowWrapper = useRef(null);
@@ -192,6 +205,17 @@ export default function WorkflowBuilder({ initialGraph = { nodes: [], edges: [] 
         color: parsed.color,
         sub: parsed.sub || "",
         template: parsed.template || "",
+        onEdit: () => {
+          // Find the node by id when edit is clicked
+          setNodes((currentNodes) => {
+            const node = currentNodes.find(n => n.id === id);
+            if (node) {
+              setEditingNode(node);
+              setOffcanvasOpen(true);
+            }
+            return currentNodes;
+          });
+        },
       },
     };
 
@@ -224,6 +248,18 @@ export default function WorkflowBuilder({ initialGraph = { nodes: [], edges: [] 
     setSelectedNode(null);
   };
 
+  const handleOffcanvasSave = (updatedData) => {
+    if (editingNode) {
+      setNodes((nds) =>
+        nds.map((n) =>
+          n.id === editingNode.id ? { ...n, data: { ...n.data, ...updatedData } } : n
+        )
+      );
+    }
+    setOffcanvasOpen(false);
+    setEditingNode(null);
+  };
+
   const handleSaveWorkflow = async () => {
     const payload = { nodes, edges };
     // call prop onSave or do fetch
@@ -236,56 +272,49 @@ export default function WorkflowBuilder({ initialGraph = { nodes: [], edges: [] 
     }
   };
 
+  const handlePublish = () => {
+    if (errorCount === 0) {
+      setWorkflowStatus("Published");
+      alert("Workflow published successfully!");
+    }
+  };
+
+  const handleDelete = () => {
+    if (confirm("Are you sure you want to delete this workflow?")) {
+      // Handle delete logic
+      alert("Workflow deleted");
+    }
+  };
+
+  const handleBack = () => {
+    // Handle back navigation
+    window.history.back();
+  };
+
   return (
-    <div style={{ display: "flex", height: "calc(100vh - 10px)", gap: 12 }}>
-      jkfjdkfk
-      {/* Left palette */}
-      <div style={{ width: 260, borderRight: "1px solid #eee", padding: 12 }}>
-        {/* <h4 style={{ margin: 0, marginBottom: 8 }}>Palette</h4> */}
-        <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-        <WorkflowSidebar
-            paletteItems={paletteItems}
-            onDragStart={onDragStart}
-            handleSaveWorkflow={handleSaveWorkflow}
-          />
-          {/* Replace left palette with WorkflowSidebar component */}
-         
-        
-          {/* {paletteItems.map((it) => (
-            <div
-              key={it.label}
-              onDragStart={(e) => onDragStart(e, it)}
-              draggable
-              style={{
-                padding: 10,
-                borderRadius: 8,
-                cursor: "grab",
-                background: "#fff",
-                border: "1px solid #e6e6e6",
-                display: "flex",
-                alignItems: "center",
-                gap: 8,
-              }}
-            >
-              <div style={{ width: 12, height: 12, borderRadius: 4, background: it.color }} />
-              <div style={{ fontWeight: 600 }}>{it.label}</div>
-            </div>
-          ))} */}
-        </div>
+    <div style={{ display: "flex", height: "100vh" }}>
+      {/* Left Sidebar */}
+      <WorkflowSidebar
+        paletteItems={paletteItems}
+        onDragStart={onDragStart}
+        handleSaveWorkflow={handleSaveWorkflow}
+      />
 
-        {/* <div style={{ marginTop: 18 }}>
-          <button onClick={handleSaveWorkflow} style={{ padding: "8px 12px", borderRadius: 6, background: "#111827", color: "#fff", border: "none" }}>
-            Save workflow
-          </button>
-        </div>
+      {/* Right Side: TopBar + Canvas */}
+      <div style={{ display: "flex", flexDirection: "column", flex: 1 }}>
+        {/* Top Bar */}
+        <WorkflowTopBar
+          workflowName={workflowName}
+          workflowType="Lead Activity"
+          status={workflowStatus}
+          errorCount={errorCount}
+          onBack={handleBack}
+          onPublish={handlePublish}
+          onDelete={handleDelete}
+        />
 
-        <div style={{ marginTop: 18, fontSize: 13, color: "#666" }}>
-          Tip: drag a block and drop anywhere on the canvas.
-        </div> */}
-      </div>
-
-      {/* Flow area */}
-      <div style={{ flex: 1, position: "relative" }}>
+        {/* Flow area */}
+        <div style={{ flex: 1, position: "relative" }}>
         <div ref={reactFlowWrapper} style={{ width: "100%", height: "100%" }}>
           <ReactFlow
             nodes={nodes}
@@ -314,6 +343,18 @@ export default function WorkflowBuilder({ initialGraph = { nodes: [], edges: [] 
           onSave={handleNodeSave}
         />
       )}
+
+      {/* Node Settings Offcanvas */}
+      <NodeSettingsOffcanvas
+        isOpen={offcanvasOpen}
+        onClose={() => {
+          setOffcanvasOpen(false);
+          setEditingNode(null);
+        }}
+        node={editingNode}
+        onSave={handleOffcanvasSave}
+      />
+      </div>
     </div>
   );
 }
