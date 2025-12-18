@@ -5,6 +5,7 @@ import { CustomTriggerNode } from "./useCustomeDesign.jsx";
 import WorkflowSidebar from "./components/WorkflowSidebar";
 import WorkflowTopBar from "./components/WorkflowTopBar";
 import NodeSettingsOffcanvas from "./components/NodeSettingsOffcanvas";
+import SendWhatsAppOffcanvas from "./components/SendWhatsAppOffcanvas";
 // import React, {  useEffect } from "react";
 import ReactFlow, {
   addEdge,
@@ -159,6 +160,7 @@ export default function WorkflowBuilder({ initialGraph = { nodes: [], edges: [] 
   const [selectedNode, setSelectedNode] = useState(null);
   const [offcanvasOpen, setOffcanvasOpen] = useState(false);
   const [editingNode, setEditingNode] = useState(null);
+  const [whatsappOffcanvasOpen, setWhatsappOffcanvasOpen] = useState(false);
   const [workflowName, setWorkflowName] = useState("On System Note");
   const [workflowStatus, setWorkflowStatus] = useState("Draft");
   const [errorCount, setErrorCount] = useState(1);
@@ -236,7 +238,12 @@ export default function WorkflowBuilder({ initialGraph = { nodes: [], edges: [] 
 
   // node double click to edit
   const onNodeDoubleClick = useCallback((evt, node) => {
-    setSelectedNode(node);
+    // Open SendWhatsAppOffcanvas for trigger nodes
+    if (node.type === "trigger") {
+      setWhatsappOffcanvasOpen(true);
+    } else {
+      setSelectedNode(node);
+    }
   }, []);
 
   const handleNodeSave = (updatedData) => {
@@ -364,6 +371,16 @@ export default function WorkflowBuilder({ initialGraph = { nodes: [], edges: [] 
         }}
         node={editingNode}
         onSave={handleOffcanvasSave}
+      />
+
+      {/* WhatsApp Offcanvas */}
+      <SendWhatsAppOffcanvas
+        isOpen={whatsappOffcanvasOpen}
+        onClose={() => setWhatsappOffcanvasOpen(false)}
+        onSave={(data) => {
+          console.log("WhatsApp config saved:", data);
+          setWhatsappOffcanvasOpen(false);
+        }}
       />
       </div>
       </div>
