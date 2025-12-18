@@ -132,73 +132,78 @@ export default function MediaLibraryModal({ isOpen, onClose, onSelect }) {
           ))}
         </div>
 
-        {/* File List Header */}
-        <div className="px-4 md:px-6 py-3 border-b border-gray-200 shrink-0">
-          <div className="grid grid-cols-[1fr_auto_auto_auto] md:grid-cols-[2fr_1fr_1fr_1fr] gap-4 text-xs md:text-sm font-medium text-gray-600">
-            <div>File name</div>
-            <div className="text-right md:text-left">Size</div>
-            <div className="hidden md:block">Uploaded on</div>
-            <div className="text-right">Actions</div>
-          </div>
-        </div>
-
-        {/* File List */}
-        <div className="flex-1 overflow-y-auto px-4 md:px-6">
+        {/* File List Table */}
+        <div className="flex-1 overflow-x-auto overflow-y-auto">
           {filteredFiles.length === 0 ? (
             <div className="flex flex-col items-center justify-center py-16 text-gray-400">
               <div className="text-4xl mb-3">📁</div>
               <div className="text-sm">No files found</div>
             </div>
           ) : (
-            <div className="space-y-2 py-3">
-              {filteredFiles.map((file) => (
-                <div
-                  key={file.id}
-                  className="grid grid-cols-[auto_1fr_auto_auto_auto] md:grid-cols-[auto_2fr_1fr_1fr_1fr] gap-3 md:gap-4 items-center p-3 rounded-lg hover:bg-gray-50 border border-gray-200 transition-colors"
-                >
-                  {/* Thumbnail */}
-                  <div className="w-12 h-12 md:w-14 md:h-14 bg-gradient-to-br from-purple-400 to-pink-400 rounded flex items-center justify-center text-white font-bold text-xs shrink-0">
-                    IMG
-                  </div>
+            <table className="w-full min-w-[700px]">
+              <thead className="bg-gray-50 sticky top-0">
+                <tr className="border-b border-gray-200">
+                  <th className="px-4 md:px-6 py-3 text-left text-xs md:text-sm font-medium text-gray-600 w-16"></th>
+                  <th className="px-4 py-3 text-left text-xs md:text-sm font-medium text-gray-600">File name</th>
+                  <th className="px-4 py-3 text-left text-xs md:text-sm font-medium text-gray-600 w-24">Size</th>
+                  <th className="px-4 py-3 text-left text-xs md:text-sm font-medium text-gray-600 w-32">Uploaded on</th>
+                  <th className="px-4 md:px-6 py-3 text-right text-xs md:text-sm font-medium text-gray-600 w-48">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                {filteredFiles.map((file) => (
+                  <tr
+                    key={file.id}
+                    className="border-b border-gray-200 hover:bg-gray-50 transition-colors"
+                  >
+                    {/* Thumbnail */}
+                    <td className="px-4 md:px-6 py-3">
+                      <div className="w-12 h-12 md:w-14 md:h-14 bg-gradient-to-br from-purple-400 to-pink-400 rounded flex items-center justify-center text-white font-bold text-xs">
+                        IMG
+                      </div>
+                    </td>
 
-                  {/* File Name */}
-                  <div className="min-w-0">
-                    <div className="text-xs md:text-sm text-gray-900 truncate" title={file.name}>
-                      {file.name}
-                    </div>
-                  </div>
+                    {/* File Name */}
+                    <td className="px-4 py-3">
+                      <div className="text-xs md:text-sm text-gray-900 max-w-xs truncate" title={file.name}>
+                        {file.name}
+                      </div>
+                    </td>
 
-                  {/* Size */}
-                  <div className="text-xs md:text-sm text-gray-600 text-right md:text-left">
-                    {file.size}
-                  </div>
+                    {/* Size */}
+                    <td className="px-4 py-3 text-xs md:text-sm text-gray-600">
+                      {file.size}
+                    </td>
 
-                  {/* Uploaded On */}
-                  <div className="hidden md:block text-sm text-gray-600">
-                    {file.uploadedOn}
-                  </div>
+                    {/* Uploaded On */}
+                    <td className="px-4 py-3 text-xs md:text-sm text-gray-600">
+                      {file.uploadedOn}
+                    </td>
 
-                  {/* Actions */}
-                  <div className="flex items-center gap-2 justify-end">
-                    <button
-                      onClick={() => handleSelectFile(file)}
-                      className="px-3 md:px-4 py-1.5 bg-purple-600 text-white rounded-lg text-xs md:text-sm font-medium hover:bg-purple-700 transition-colors"
-                    >
-                      Select
-                    </button>
-                    <button className="p-1.5 text-gray-400 hover:text-gray-600 transition-colors hidden md:block">
-                      <Download size={16} />
-                    </button>
-                    <button className="p-1.5 text-gray-400 hover:text-gray-600 transition-colors hidden md:block">
-                      <Edit2 size={16} />
-                    </button>
-                    <button className="p-1.5 text-gray-400 hover:text-red-600 transition-colors hidden md:block">
-                      <Trash2 size={16} />
-                    </button>
-                  </div>
-                </div>
-              ))}
-            </div>
+                    {/* Actions */}
+                    <td className="px-4 md:px-6 py-3">
+                      <div className="flex items-center gap-1 md:gap-2 justify-end">
+                        <button
+                          onClick={() => handleSelectFile(file)}
+                          className="px-3 md:px-4 py-1.5 bg-purple-600 text-white rounded-lg text-xs md:text-sm font-medium hover:bg-purple-700 transition-colors"
+                        >
+                          Select
+                        </button>
+                        <button className="p-1.5 text-gray-400 hover:text-gray-600 transition-colors">
+                          <Download size={14} className="md:w-4 md:h-4" />
+                        </button>
+                        <button className="p-1.5 text-gray-400 hover:text-gray-600 transition-colors">
+                          <Edit2 size={14} className="md:w-4 md:h-4" />
+                        </button>
+                        <button className="p-1.5 text-gray-400 hover:text-red-600 transition-colors">
+                          <Trash2 size={14} className="md:w-4 md:h-4" />
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           )}
         </div>
 
