@@ -9,7 +9,7 @@ import {
   Users, 
   GraduationCap, 
   UserCog, 
-  MessageSquare, 
+  MessageCircle, 
   FileText, 
   BookOpen, 
   Grid3x3,
@@ -105,7 +105,7 @@ const sidebarMenuItems = [
   {
     id: 'whatsapp-chat',
     label: 'Whatsapp Chat',
-    icon: MessageSquare,
+    icon: MessageCircle,
     href: '/whatsapp-chat'
   },
   {

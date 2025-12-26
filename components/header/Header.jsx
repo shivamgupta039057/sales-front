@@ -238,7 +238,7 @@ const Header = () => {
   ];
 
   return (
-    <header className="fixed top-0 left-[47px] right-0 bg-white shadow-sm px-3 flex justify-between items-center z-40 border-b border-gray-100 h-[47px]">
+    <header className="bg-white shadow-sm px-3 flex justify-between items-center z-40 border-b border-gray-100 h-[47px] flex-shrink-0">
       {/* Left Section - Workspace Selector and Settings in Single Container */}
       <div className="relative flex items-stretch bg-white border border-[#D5D5D5]/60 rounded-full overflow-visible shadow-[inset_0_0_0_1px_rgba(0,0,0,0.02)]">
         {/* Workspace Selector */}
