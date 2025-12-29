@@ -1,11 +1,15 @@
 "use client";
 
-import React from 'react';
+import React, { useState } from 'react';
 import { Phone, Video, MoreVertical, Settings, ArrowLeft, Star } from 'lucide-react';
+import ProfileOffcanvas from './ProfileOffcanvas';
 
 const ChatHeader = ({ contact }) => {
+  const [isProfileOpen, setIsProfileOpen] = useState(false);
+
   return (
-    <div className="h-[60px] bg-white border-b border-gray-200 px-3 md:px-5 flex items-center justify-between">
+    <>
+      <div className="h-[60px] bg-white border-b border-gray-200 px-3 md:px-5 flex items-center justify-between">
       {/* Left Section - Contact Info */}
       <div className="flex items-center gap-2 md:gap-3 flex-1 min-w-0">
         <button 
@@ -15,30 +19,35 @@ const ChatHeader = ({ contact }) => {
           <ArrowLeft className="w-5 h-5 text-gray-600" />
         </button>
         
-        <div className="w-9 h-9 md:w-10 md:h-10 rounded-full bg-purple-600 flex items-center justify-center text-white font-semibold text-sm flex-shrink-0">
-          {contact.name.charAt(0).toUpperCase()}
-        </div>
-        
-        <div className="min-w-0 flex-1">
-          <div className="flex items-center gap-1 md:gap-2">
-            <h2 className="font-semibold text-sm md:text-base text-gray-800 truncate">
-              {contact.name}
-            </h2>
-            <div className="hidden sm:flex items-center gap-0.5 flex-shrink-0">
-              {[1, 2, 3, 4, 5].map((star, index) => (
-                <Star
-                  key={index}
-                  className={`w-3.5 h-3.5 ${
-                    index < 2 ? 'fill-yellow-400 text-yellow-400' : 'text-gray-300'
-                  }`}
-                />
-              ))}
+        <button 
+          onClick={() => setIsProfileOpen(true)}
+          className="flex items-center gap-2 md:gap-3 hover:bg-gray-50 rounded-lg p-1 -ml-1 transition-colors"
+        >
+          <div className="w-9 h-9 md:w-10 md:h-10 rounded-full bg-[#5D5BD0] flex items-center justify-center text-white font-semibold text-sm flex-shrink-0">
+            {contact.name.charAt(0).toUpperCase()}
+          </div>
+          
+          <div className="min-w-0 flex-1 text-left">
+            <div className="flex items-center gap-1 md:gap-2">
+              <h2 className="font-semibold text-sm md:text-base text-gray-800 truncate">
+                {contact.name}
+              </h2>
+              <div className="hidden sm:flex items-center gap-0.5 flex-shrink-0">
+                {[1, 2, 3, 4, 5].map((star, index) => (
+                  <Star
+                    key={index}
+                    className={`w-3.5 h-3.5 ${
+                      index < 2 ? 'fill-yellow-400 text-yellow-400' : 'text-gray-300'
+                    }`}
+                  />
+                ))}
+              </div>
+            </div>
+            <div className="text-sm text-gray-500">
+              {contact.status}
             </div>
           </div>
-          <div className="text-sm text-gray-500">
-            {contact.status}
-          </div>
-        </div>
+        </button>
       </div>
 
       {/* Right Section - Action Buttons */}
@@ -57,6 +66,14 @@ const ChatHeader = ({ contact }) => {
         </button>
       </div>
     </div>
+
+    {/* Profile Offcanvas */}
+    <ProfileOffcanvas 
+      isOpen={isProfileOpen}
+      onClose={() => setIsProfileOpen(false)}
+      contact={contact}
+    />
+  </>
   );
 };
 

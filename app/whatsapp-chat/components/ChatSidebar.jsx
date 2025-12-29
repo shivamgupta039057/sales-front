@@ -22,7 +22,7 @@ const ChatSidebar = ({
       {/* Header with Title */}
       <div className="px-4 py-3 border-b border-gray-200 flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <div className="w-8 h-8 bg-purple-600 rounded flex items-center justify-center text-white font-bold text-sm">
+          <div className="w-8 h-8 bg-[#5D5BD0] rounded flex items-center justify-center text-white font-bold text-sm">
             V
           </div>
           <div>
@@ -50,7 +50,7 @@ const ChatSidebar = ({
               placeholder="Search lead(s)"
               value={searchQuery}
               onChange={(e) => onSearchChange(e.target.value)}
-              className="w-full pl-9 pr-3 py-2 bg-gray-100 border-none rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-purple-500"
+              className="w-full pl-9 pr-3 py-2 bg-gray-100 border-none rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
           <button className="p-2 hover:bg-gray-100 rounded-md">
@@ -67,7 +67,7 @@ const ChatSidebar = ({
             onClick={() => onTabChange(tab)}
             className={`px-4 py-1.5 rounded-md text-sm font-medium transition-colors ${
               activeTab === tab
-                ? 'bg-purple-100 text-purple-700'
+                ? 'bg-blue-200 text-[#5D5BD0]'
                 : 'text-gray-600 hover:bg-gray-100'
             }`}
           >
@@ -92,13 +92,13 @@ const ChatSidebar = ({
               onClick={() => onSelectChat(chat)}
               className={`px-4 py-3 border-b border-gray-100 cursor-pointer transition-colors ${
                 selectedChat?.id === chat.id
-                  ? 'bg-purple-50 border-l-4 border-l-purple-600'
+                  ? 'bg-blue-50 border-l-4 border-l-[#5D5BD0]'
                   : 'hover:bg-gray-50'
               }`}
             >
               <div className="flex items-start gap-3">
                 {/* Avatar */}
-                <div className="w-10 h-10 rounded-full bg-purple-600 flex items-center justify-center text-white font-semibold text-sm flex-shrink-0">
+                <div className="w-10 h-10 rounded-full bg-[#5D5BD0] flex items-center justify-center text-white font-semibold text-sm flex-shrink-0">
                   {chat.name.charAt(0).toUpperCase()}
                 </div>
 

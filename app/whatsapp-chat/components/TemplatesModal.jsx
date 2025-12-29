@@ -8,6 +8,8 @@ const TemplatesModal = ({ isOpen, onClose, onSelectTemplate, buttonRef }) => {
   const [categoryFilter, setCategoryFilter] = useState('All');
   const [languageFilter, setLanguageFilter] = useState('All');
   const [typeFilter, setTypeFilter] = useState('All');
+  const [hoveredTemplate, setHoveredTemplate] = useState(null);
+  const [tooltipPosition, setTooltipPosition] = useState({ x: 0, y: 0 });
   const dropdownRef = useRef(null);
 
   const templates = [
@@ -84,12 +86,27 @@ const TemplatesModal = ({ isOpen, onClose, onSelectTemplate, buttonRef }) => {
     return matchesSearch && matchesCategory && matchesLanguage;
   });
 
+  const handleMouseEnter = (template, event) => {
+    const rect = event.currentTarget.getBoundingClientRect();
+    const dropdownRect = dropdownRef.current?.getBoundingClientRect();
+    setTooltipPosition({
+      x: rect.right + 10,
+      y: dropdownRect?.top || rect.top,
+      height: dropdownRect?.height || 500
+    });
+    setHoveredTemplate(template);
+  };
+
+  const handleMouseLeave = () => {
+    setHoveredTemplate(null);
+  };
+
   if (!isOpen) return null;
 
   return (
     <div 
       ref={dropdownRef}
-      className="fixed sm:absolute inset-0 sm:inset-auto sm:bottom-full sm:left-0 sm:mb-2 bg-white sm:rounded-lg shadow-2xl w-full sm:w-[600px] md:w-[700px] h-full sm:h-auto sm:max-h-[500px] flex flex-col z-50 sm:border sm:border-gray-200"
+      className="fixed sm:absolute inset-0 sm:inset-auto sm:bottom-full sm:left-0 sm:mb-7 bg-white sm:rounded-lg shadow-2xl w-full sm:w-[600px] md:w-[700px] h-full sm:h-auto sm:max-h-[500px] flex flex-col z-50 sm:border sm:border-gray-200"
     >
       {/* Header */}
       <div className="flex items-center justify-between px-3 sm:px-4 py-3 border-b border-gray-200 flex-shrink-0">
@@ -104,7 +121,7 @@ const TemplatesModal = ({ isOpen, onClose, onSelectTemplate, buttonRef }) => {
         </div>
         
         <div className="flex items-center gap-2">
-          <button className="text-xs sm:text-sm text-purple-600 hover:text-purple-700 font-medium">
+          <button className="text-xs sm:text-sm hover:opacity-80 font-medium" style={{ color: '#5D5BD0' }}>
             Manage
           </button>
           <button 
@@ -126,7 +143,10 @@ const TemplatesModal = ({ isOpen, onClose, onSelectTemplate, buttonRef }) => {
             placeholder="Search by name or content"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full pl-9 pr-3 py-2 sm:py-1.5 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-purple-500"
+            className="w-full pl-9 pr-3 py-2 sm:py-1.5 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2"
+            style={{ '--tw-ring-color': '#5D5BD0' }}
+            onFocus={(e) => e.target.style.boxShadow = '0 0 0 2px #5D5BD0'}
+            onBlur={(e) => e.target.style.boxShadow = ''}
           />
         </div>
 
@@ -137,7 +157,9 @@ const TemplatesModal = ({ isOpen, onClose, onSelectTemplate, buttonRef }) => {
             <select
               value={categoryFilter}
               onChange={(e) => setCategoryFilter(e.target.value)}
-              className="px-2 py-1 border border-gray-300 rounded text-xs focus:outline-none focus:ring-2 focus:ring-purple-500 min-w-[80px]"
+              className="px-2 py-1 border border-gray-300 rounded text-xs focus:outline-none min-w-[80px]"
+              onFocus={(e) => e.target.style.boxShadow = '0 0 0 2px #5D5BD0'}
+              onBlur={(e) => e.target.style.boxShadow = ''}
             >
               <option>All</option>
               <option>Marketing</option>
@@ -150,7 +172,9 @@ const TemplatesModal = ({ isOpen, onClose, onSelectTemplate, buttonRef }) => {
             <select
               value={languageFilter}
               onChange={(e) => setLanguageFilter(e.target.value)}
-              className="px-2 py-1 border border-gray-300 rounded text-xs focus:outline-none focus:ring-2 focus:ring-purple-500 min-w-[80px]"
+              className="px-2 py-1 border border-gray-300 rounded text-xs focus:outline-none min-w-[80px]"
+              onFocus={(e) => e.target.style.boxShadow = '0 0 0 2px #5D5BD0'}
+              onBlur={(e) => e.target.style.boxShadow = ''}
             >
               <option>All</option>
               <option>English</option>
@@ -163,7 +187,9 @@ const TemplatesModal = ({ isOpen, onClose, onSelectTemplate, buttonRef }) => {
             <select
               value={typeFilter}
               onChange={(e) => setTypeFilter(e.target.value)}
-              className="px-2 py-1 border border-gray-300 rounded text-xs focus:outline-none focus:ring-2 focus:ring-purple-500 min-w-[80px]"
+              className="px-2 py-1 border border-gray-300 rounded text-xs focus:outline-none min-w-[80px]"
+              onFocus={(e) => e.target.style.boxShadow = '0 0 0 2px #5D5BD0'}
+              onBlur={(e) => e.target.style.boxShadow = ''}
             >
               <option>All</option>
               <option>Text</option>
@@ -192,7 +218,17 @@ const TemplatesModal = ({ isOpen, onClose, onSelectTemplate, buttonRef }) => {
                 onSelectTemplate(template);
                 onClose();
               }}
-              className="px-3 sm:px-4 py-3 border-b border-gray-100 hover:bg-purple-50 active:bg-purple-100 cursor-pointer transition-colors"
+              onMouseEnter={(e) => handleMouseEnter(template, e)}
+              onMouseLeave={handleMouseLeave}
+              className="px-3 sm:px-4 py-3 border-b border-gray-100 cursor-pointer transition-colors relative"
+              style={{
+                '--hover-bg': '#F3F3FF',
+                '--active-bg': '#E8E8FF'
+              }}
+              onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#F3F3FF'}
+              onMouseOut={(e) => e.currentTarget.style.backgroundColor = ''}
+              onMouseDown={(e) => e.currentTarget.style.backgroundColor = '#E8E8FF'}
+              onMouseUp={(e) => e.currentTarget.style.backgroundColor = '#F3F3FF'}
             >
               <div className="flex items-start gap-2 sm:gap-2.5">
                 {/* Icon */}
@@ -202,7 +238,7 @@ const TemplatesModal = ({ isOpen, onClose, onSelectTemplate, buttonRef }) => {
 
                 {/* Content */}
                 <div className="flex-1 min-w-0">
-                  <h3 className="font-semibold text-sm sm:text-base text-purple-600 mb-1">
+                  <h3 className="font-semibold text-sm sm:text-base mb-1" style={{ color: '#5D5BD0' }}>
                     {template.name}
                   </h3>
                   <div className="flex items-center gap-2 mb-1.5">
@@ -219,6 +255,41 @@ const TemplatesModal = ({ isOpen, onClose, onSelectTemplate, buttonRef }) => {
           ))
         )}
       </div>
+
+      {/* Hover Preview Tooltip */}
+      {hoveredTemplate && (
+        <div
+          className="fixed bg-white border-2 rounded-lg shadow-2xl p-4 z-[100] animate-slideFromLeft overflow-y-auto"
+          style={{
+            left: `${tooltipPosition.x}px`,
+            top: `${tooltipPosition.y}px`,
+            height: `${tooltipPosition.height}px`,
+            width: '400px',
+            maxWidth: '400px',
+            borderColor: '#ffff'
+          }}
+        >
+          <div className="flex items-center gap-2 mb-2 pb-2 border-b border-gray-200">
+            <div className="w-10 h-10 rounded flex items-center justify-center text-lg flex-shrink-0" style={{ backgroundColor: '#F3F3FF' }}>
+              {hoveredTemplate.icon}
+            </div>
+            <div>
+              <h4 className="font-bold text-base" style={{ color: '#5D5BD0' }}>
+                {hoveredTemplate.name}
+              </h4>
+              <span className="inline-block px-2 py-0.5 bg-orange-100 text-orange-700 text-xs rounded">
+                {hoveredTemplate.category}
+              </span>
+            </div>
+          </div>
+          <div className="text-sm text-gray-700 flex-1 overflow-y-auto">
+            <p className="whitespace-pre-wrap">{hoveredTemplate.content}</p>
+          </div>
+          <div className="mt-2 pt-2 border-t border-gray-200 text-xs text-gray-500">
+            Language: {hoveredTemplate.language}
+          </div>
+        </div>
+      )}
     </div>
   );
 };

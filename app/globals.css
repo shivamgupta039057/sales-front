@@ -35,3 +35,35 @@
   width: 0 !important;
   height: 0 !important;
 }
+
+/* Fade in animation for tooltips */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.2s ease-out;
+}
+
+/* Slide from left animation for tooltip */
+@keyframes slideFromLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-slideFromLeft {
+  animation: slideFromLeft 0.25s ease-out;
+}
