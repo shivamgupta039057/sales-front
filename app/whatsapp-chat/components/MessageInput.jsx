@@ -34,7 +34,7 @@ const MessageInput = ({ onSendMessage }) => {
     <>
       {/* 24 Hour Warning */}
       {show24HrWarning && (
-        <div className="bg-gray-100 border-t border-gray-200 px-4 py-2.5 flex items-center justify-center gap-2">
+        <div className="bg-gray-100 border-t border-gray-200 px-4 py-2.5 flex items-center justify-center gap-2 relative">
           <MessageSquare className="w-4 h-4 text-gray-600 flex-shrink-0" />
           <p className="text-xs md:text-sm text-gray-700">
             You can only send template messages because 24hr window passed{' '}
@@ -47,21 +47,39 @@ const MessageInput = ({ onSendMessage }) => {
               Send Template
             </button>
           </p>
+
+          {/* Templates Modal for 24hr warning */}
+          <TemplatesModal
+            isOpen={isTemplatesOpen}
+            onClose={() => setIsTemplatesOpen(false)}
+            onSelectTemplate={handleTemplateSelect}
+            buttonRef={sendTemplateLinkRef}
+          />
         </div>
       )}
 
-      <div className="bg-white border-t border-gray-200 px-2 md:px-4 py-2 md:py-3 relative">
+      <div className="bg-white border-t border-gray-200 px-2 md:px-4 py-2 md:py-3">
         <form onSubmit={handleSubmit} className="flex items-center gap-1 md:gap-2">
           {/* Templates Button */}
-          <button
-            ref={templatesButtonRef}
-            type="button"
-            onClick={() => setIsTemplatesOpen(!isTemplatesOpen)}
-            className="p-1.5 md:p-2 text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded-full transition-colors flex-shrink-0"
-            title="Templates"
-          >
-            <MessageSquare className="w-4 h-4 md:w-5 md:h-5" />
-          </button>
+          <div className="relative">
+            <button
+              ref={templatesButtonRef}
+              type="button"
+              onClick={() => setIsTemplatesOpen(!isTemplatesOpen)}
+              className="p-1.5 md:p-2 text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded-full transition-colors flex-shrink-0"
+              title="Templates"
+            >
+              <MessageSquare className="w-4 h-4 md:w-5 md:h-5" />
+            </button>
+
+            {/* Templates Dropdown */}
+            <TemplatesModal
+              isOpen={isTemplatesOpen}
+              onClose={() => setIsTemplatesOpen(false)}
+              onSelectTemplate={handleTemplateSelect}
+              buttonRef={templatesButtonRef}
+            />
+          </div>
 
           {/* Attachment Button */}
           <button
@@ -88,12 +106,12 @@ const MessageInput = ({ onSendMessage }) => {
               placeholder="Type a message"
               rows={1}
               className="w-full px-4 py-2.5 pr-10 bg-gray-100 border-none rounded-lg text-sm resize-none focus:outline-none focus:ring-2 focus:ring-purple-500 max-h-32"
-              style={{ 
+              style={{
                 minHeight: '42px',
                 maxHeight: '120px'
               }}
             />
-            
+
             {/* Emoji Button */}
             <button
               type="button"
@@ -121,17 +139,9 @@ const MessageInput = ({ onSendMessage }) => {
           )}
         </form>
 
-        {/* Templates Dropdown */}
-        <TemplatesModal
-          isOpen={isTemplatesOpen}
-          onClose={() => setIsTemplatesOpen(false)}
-          onSelectTemplate={handleTemplateSelect}
-          buttonRef={isTemplatesOpen && sendTemplateLinkRef.current ? sendTemplateLinkRef : templatesButtonRef}
-        />
-
         {/* Footer Text */}
       </div>
-  </>
+    </>
   );
 };
 

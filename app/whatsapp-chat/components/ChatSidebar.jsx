@@ -1,7 +1,8 @@
 "use client";
 
 import React from 'react';
-import { Search, Filter, Menu, BarChart2 } from 'lucide-react';
+import { Search, Filter, Menu, BarChart2, Radio } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 
 const ChatSidebar = ({ 
   chats, 
@@ -12,6 +13,7 @@ const ChatSidebar = ({
   activeTab,
   onTabChange 
 }) => {
+  const router = useRouter();
   const tabs = ['All', 'Pending', 'Intervened'];
   const totalCount = chats.length;
 
@@ -31,6 +33,13 @@ const ChatSidebar = ({
           </div>
         </div>
         <div className="flex items-center gap-2">
+          <button 
+            onClick={() => router.push('/whatsapp-chat/broadcasts')}
+            className="p-1.5 hover:bg-gray-100 rounded transition-colors"
+            title="Broadcasts"
+          >
+            <Radio className="w-5 h-5 text-gray-600" />
+          </button>
           <button className="p-1.5 hover:bg-gray-100 rounded">
             <BarChart2 className="w-5 h-5 text-gray-600" />
           </button>
